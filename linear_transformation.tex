@@ -18,6 +18,9 @@ If (and only if) $\nullspace{T} = \set{0}$, $T$ is a one-to-one mapping.
 
 As the behavior of a vector space is completely defined by its basis, the behavior of linear transformation is also determined by its action on basis. If $\set{v_i}$ is a basis of $V$ with $n$ vectors, and we randomly pick $n$ vectors $\set{w_i}$ from $W$, there is a unique linear transformation $T$ that $T(v_i) = w_i$. Note that $v_i$ has to be linearly independent, but there is no such requirement for $w_i$.
 
+
+If $V = W$, $T$ is called linear operator. Linear operator is the focus of inner product.
+
 \subsubsection{Coordinates}
 We could now define coordinates using linear transformation. Let $\beta = \set{u_i}$ be an ordered basis. If $x = \sum_{i=1}^n a_i u_i$, we define the coordinate of $x$ relative to $\beta$ as 
 \begin{equation}
@@ -90,7 +93,7 @@ We now examine the coordinate relations given two basis. First start from a vect
 
 $Q$ is the change of coordinate matrix that change from $\beta^\prime$ coordinates into $\beta$ coordinates. $\inverse{Q}$ will change from $\beta$ coordinates into $\beta^\prime$ coordinates. 
 
-After the vector relation is revealed, we now examine the linear transformation. It have the same relationship:
+After the vector relation is revealed, we now examine the linear operator. It have the same relationship:
 \begin{equation}
     \coordinate{T}_\beta^\prime = \inverse{Q} \coordinate{T}_{\beta} Q
 \end{equation}
