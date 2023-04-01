@@ -1,0 +1,137 @@
+
+% linear transformation
+\section{Linear Transformation}
+
+\subsection{Definition}
+A function $T:V \rightarrow W$ is a linear transformation if $T(cx + y) = cT(x) + T(y)$. There are few basic terms for linear transformation:
+\begin{itemize}
+    \item $I_V$: identity transformation that $I_V (x) = x$
+    \item $I_0$: zero transformation that $I_0 (x) = 0$
+\end{itemize}
+
+$\nullspace{T}$ and $\rangespace{T}$ are all spaces. $\dimension{\rangespace{T}}$ is the rank of $T$. We have:
+\begin{equation}
+    \text{nullity}(T) + \rank{T} = \dimension{V}
+\end{equation}
+
+If (and only if) $\nullspace{T} = \set{0}$, $T$ is a one-to-one mapping.
+
+As the behavior of a vector space is completely defined by its basis, the behavior of linear transformation is also determined by its action on basis. If $\set{v_i}$ is a basis of $V$ with $n$ vectors, and we randomly pick $n$ vectors $\set{w_i}$ from $W$, there is a unique linear transformation $T$ that $T(v_i) = w_i$. Note that $v_i$ has to be linearly independent, but there is no such requirement for $w_i$.
+
+\subsubsection{Coordinates}
+We could now define coordinates using linear transformation. Let $\beta = \set{u_i}$ be an ordered basis. If $x = \sum_{i=1}^n a_i u_i$, we define the coordinate of $x$ relative to $\beta$ as 
+\begin{equation}
+    x = \sum_{i=1}^n a_i u_i \Longrightarrow \coordinate{x}_\beta = \begin{pmatrix}
+        a_1 \\
+        a_2 \\
+        \vdots \\
+        a_n
+    \end{pmatrix}
+\end{equation}
+
+For linear transformation $T$ from $\beta = \set{v_i} $ to $\gamma = \set{w_j}$, we have 
+\begin{equation}
+    T(v_j) = \sum_{i=1}^m a_{ij} w_i \Longrightarrow \coordinate{T}_{\beta}^{\gamma} = \begin{pmatrix}
+        \hdots & a_{1j} & \hdots \\
+        \hdots & a_{2j} & \hdots \\
+        & \vdots \\
+        \hdots & a_{nj} & \hdots \\
+    \end{pmatrix}
+\end{equation}
+
+
+
+% matrix multiplication
+\subsection{Matrix Multiplication}
+
+Linear transformation is linear in $+$ and $\times$ operations. So we could define the product of two linear transformations $UT$. It turns out to be the standard matrix multiplication. And we have
+\begin{equation}\label{matrix_coordinate}
+    \coordinate{UT}_{\alpha}^{\gamma} = \coordinate{U}_{\beta}^{\gamma} \coordinate{T}_{\alpha}^{\beta}
+\end{equation}
+
+Let $u_j$ and $v_j$ be the $j$th column of $AB$ and $B$, we have
+\begin{enumerate}
+    \item $u_j = A v_j$
+    \item $v_j = B e_j$
+\end{enumerate}
+
+\begin{theorem}
+    \begin{equation}
+        \coordinate{T(u)}_\gamma = \coordinate{T}_{\beta}^{\gamma} \coordinate{u}_{\beta}
+    \end{equation}    
+\end{theorem}
+\begin{proof}
+    Fix a $u$. It defines a function $f: F \rightarrow V$ as $f(a) = au$, and $\set{1}$ is the standard basis for $F$. let $g=Tf$ and use Theorem~\ref{matrix_coordinate} to prove it: $\coordinate{T(u)}_\gamma = \coordinate{g(1)}_\gamma = \coordinate{g}_{\alpha}^{\gamma}$.
+\end{proof}
+
+From any matrix $A$, we could define a left multiplication transformation $L_A$.
+
+
+% inverse
+\subsection{Inverse}
+The inverse $\inverse{T}$ of a linear transformation $T:V \rightarrow W$ requires that both $T \inverse{T} = I_W$ and $\inverse{T} T = I_V$. It requires that $\dimension{V} = \dimension{W}$. We have
+\begin{equation}
+    \coordinate{\inverse{T}}_{\gamma}^{\beta} = \inverse{\left( \coordinate{T}_{\beta}^{\gamma} \right)}
+\end{equation}
+
+If we have an invertible linear transformation $T:V \rightarrow W$, $V$ and $W$ are isomorphic. The only requirement is they have to have the same dimension.
+
+Matrix $A$ and $B$ are similar if there is a $Q$ that $A = \inverse{Q} B Q$.
+
+
+
+% change of coordinates
+\subsection{Change of Coordinates}
+
+We now examine the coordinate relations given two basis. First start from a vector. Let $\beta$ and $\beta^{\prime}$ be two basis of $V$, and $Q=\coordinate{I_V}_{\beta^\prime}^\beta$ , we have 
+\begin{equation}
+    \coordinate{v}_\beta = Q \coordinate{v}_{\beta^\prime}
+\end{equation}
+
+$Q$ is the change of coordinate matrix that change from $\beta^\prime$ coordinates into $\beta$ coordinates. $\inverse{Q}$ will change from $\beta$ coordinates into $\beta^\prime$ coordinates. 
+
+After the vector relation is revealed, we now examine the linear transformation. It have the same relationship:
+\begin{equation}
+    \coordinate{T}_\beta^\prime = \inverse{Q} \coordinate{T}_{\beta} Q
+\end{equation}
+
+A simpler version happens with $L_A$ and standard basis over $F^n$. For any non-standard basis $\gamma$, the $j$th column of $Q$ is the $j$th vector of $\gamma$. It is now easy to calculate the linear transformation of $L_A$ under the new basis $\gamma$.
+
+
+% example
+\subsection{Linear Transformation Example}
+
+\begin{example}
+    The formula of the reflection about the line $y=tx$. It is a linear transformation $T$ with coordinates under standard basis $\beta$:
+    \begin{equation*}
+        \coordinate{T}_\beta = \frac{1}{1 + t^2} \begin{pmatrix}
+            1-t^2 & 2t \\
+            2t & t^2 -1
+        \end{pmatrix}
+    \end{equation*}
+\end{example}
+
+
+\begin{example}
+    Let's try to find the solution to homogeneous differential equation 
+    \begin{equation*}
+        \sum_{i=0}^n a_i y^{(i)} = 0
+    \end{equation*}
+    
+    Define differential operation $D$ as $D(y) = y^\prime$. $D$ turns out to be a linear operation. With a polynomial $p(t) = \sum_{i=0}^n a_i t^i$, the homogeneous equation becomes $p(D)y = 0$. So we are looking for $\nullspace{p(D)}$.
+    
+    The solution is a subspace, so we start from small. For $y^\prime + a_0 y = 0$, the solution has dimension 1 with basis $\set{e^{-a_0 t}}$.
+    
+    For advances case, we could prove that the result is of dimension $n$, so if we could find $n$ linearly independent result, it is the answer. So if $p(x) = 0$ has $n$ distinct solution $\set{c_i}$, the solution to $p(D)y = 0$ is $\set{e^{c_i t}}$. If one solution $m$ appears $k$ times, then $\set{e^{mt}, t e^{mt}, ..., t^{m-1} e^{mt}}$ are part of the solution. 
+    
+    So if 
+    \begin{equation*}
+        p(t) = (t-c_1)^{n_1} (t-c_2)^{n_2} \hdots (t-c_k)^{n_k} 
+    \end{equation*}
+    the basis for the solution is 
+    \begin{equation*}
+        \set{e^{c_1 t}, t e^{c_1 t}, ... , t^{n_1 -1} e^{c_1 t}, ... ,  e^{c_k t}, t e^{c_k t}, ..., t^{n_k -1} e^{c_k t}}
+    \end{equation*}
+\end{example}
+
+
