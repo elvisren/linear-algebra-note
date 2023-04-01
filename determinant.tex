@@ -1,0 +1,129 @@
+\section{Determinant}
+
+
+\subsection{Definition}
+
+Determinant is a function from $A$ to $F$. The most used one is 
+\begin{equation}
+    \determinate{\begin{pmatrix}
+        a & b \\
+        c & d
+    \end{pmatrix}} = ad - bc
+\end{equation}
+
+
+Proper definition of determinant is a little complex. Define the cofactor of the entry of $A$ in row $i$ and column $j$ as $\cofactor{A} = (-1)^{i+j} \determinate{\tilde{A}_{ij}}$, $\tilde{A}$ is a $(n-1)\times (n-1)$ matrix obtained by removing row $i$ and column $j$ of $A$. The determinant of $A$ along row $i$ is recursively defined as:
+\begin{equation}
+    \determinate{A} = \sum_{j=1}^n A_{ij} \times \cofactor{A_{ij}} = \sum_{j=1}^n (-1)^{i+j} A_{ij}  \determinate{\tilde{A}_{ij}}
+\end{equation}
+
+
+\subsection{Properties}
+
+\begin{theorem}
+    The volume of $n$ vectors $\set{v_i}$ in $F^n$ is :
+    \begin{equation}
+\mathbf{abs\ } {\determinate{\begin{pmatrix}
+            v_1,\\
+            v_2,\\
+            \vdots \\
+            v_n
+        \end{pmatrix}}}
+    \end{equation}
+\end{theorem}
+
+
+\begin{theorem}
+    If a matrix has two identical rows, then $\determinate{A} = 0$.
+\end{theorem}
+
+
+\begin{theorem}
+    \begin{equation}
+        \determinate{AB} = \determinate{A} \times \determinate{B}
+    \end{equation}    
+\end{theorem}
+
+
+\begin{theorem}[Cramer's Rule]
+    For $A_{n \times n}x=b$, if $\determinate{A} \neq 0$, the solution is:
+    \begin{equation}
+        x_k = \frac{\determinate{M_k}}{\determinate{A}}
+    \end{equation}
+    where $M_k$ is obtained by replacing column $k$ of $A$ by $b$.
+\end{theorem}
+
+\begin{theorem}
+    If $A$ is invertible, then:
+    \begin{equation}
+        \inverse{A} = \frac{(\cofactor{A})^t}{\determinate{A}}
+    \end{equation}    
+\end{theorem}
+
+
+\begin{theorem}
+  For elementary operations:
+\begin{itemize}
+    \item interchange two rows: $\determinate{B} = - \determinate{A}$ 
+    \item multiply a row by $k$: $\determinate{B} = k \determinate{A}$
+    \item add a row to another $\determinate{B} = \determinate{A}$
+\end{itemize}  
+\end{theorem}
+
+\begin{theorem}
+    \begin{equation}
+        \determinate{A^t} = \determinate{A}
+    \end{equation}    
+\end{theorem}
+
+\begin{theorem}
+    If $A$ is invertible, then:
+    \begin{equation}
+        \determinate{\inverse{A}} = \frac{1}{\determinate{A}}
+    \end{equation}    
+\end{theorem}
+
+
+
+
+\begin{theorem}
+    If $\beta$ and $\gamma$ are two ordered basis for $R^n$, they have the same orientation of and only if $\determinate{Q} > 0$, where $Q$ is change-of-coordinate matrix from $\beta$ to $\gamma$. If $\beta$ is the standard basis, then $\gamma$ is a right-handed coordinate system if $\determinate{Q} > 0$.
+\end{theorem}
+
+
+% theory
+\subsection{Theory}
+
+The determinant could be viewed as the only result of special property. First we have to define two things.
+
+\begin{definition}[n-linear function]
+    $\delta$ is a n-linear function over $A$ if:
+    \begin{equation}
+        \delta \begin{pmatrix}
+            \vdots \\
+            u + kv \\
+            \vdots \\
+        \end{pmatrix} = \delta \begin{pmatrix}
+            \vdots \\
+            u \\
+            \vdots \\
+        \end{pmatrix} + k \times \delta \begin{pmatrix}
+            \vdots \\
+            v \\
+            \vdots \\
+        \end{pmatrix} 
+    \end{equation}
+\end{definition}
+
+
+\begin{definition}[alternating]
+    A n-linear function is alternating if $\delta (A) = 0$ when two adjacent rows of $A$ are identical.
+\end{definition}
+
+Then the determinant is the only function that :
+\begin{enumerate}
+    \item n-linear
+    \item alternating
+    \item $\gamma(I) = 1$
+\end{enumerate}
+
