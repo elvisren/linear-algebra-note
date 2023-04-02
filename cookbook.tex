@@ -13,6 +13,7 @@
 \subsection{Famous Relationship}
 \begin{enumerate}
     \item similar: Matrix $A$ and $B$ are similar if there is a $Q$ that $A = \inverse{Q} B Q$
+    \item orthogonally equivalent (unitarily equivalent): similar, with $\inverse{Q} = Q^*$
     \item isomorphic: $V$ and $W$ are isomorphic if there is an invertible linear transformation $T:V \rightarrow W$
 \end{enumerate}
 
@@ -28,5 +29,8 @@
             \item $x$ could be $Ay$ where $y \in \nullspace{A}$
             \item $x$ could be $(T - \lambda I_n)x$. If $T$ is normal, $T-\lambda I_n$ is also normal, so we could move $T-\lambda I_n$ around the inner product
         \end{itemize}
+    \item If there is a formula on $x$, replace $x$ by $x-y$, such as $\norm{T(x)} = \norm{x}$
+    \item If there is a formula on both $x$ and $T(x)$, replace $x$ by $T(x)$
+    \item Prove $x = y$ by proving $\norm{x - y} = 0$, which is $\innerproduct{x - y}{x - y} = 0$
 \end{enumerate}
 

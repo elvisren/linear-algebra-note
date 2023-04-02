@@ -174,6 +174,7 @@ The purpose here is to find orthonormal basis of eigenvectors. If $T$ has eigenv
     \item If $T$ is normal, then the eigenvalue of $T$ and $T^*$ are the same
 \end{enumerate}
 
+The operators here are complex normal or real symmetric.
 
 We need to link eigenvalue with conjugate transpose. For a eigenvalue $\lambda$ of $T$, we have $(T - \lambda I)v = 0$ for each eigenvector. So $\innerproduct{(T-\lambda I)v}{x} = 0$. So $0$ is used first in characteristic polynomial, and then used in inner product. Now we prove the following Theorem~\ref{congjugate_transpose_has_eigenvalue}.
 
@@ -300,7 +301,7 @@ A quick summary of important theorems:
 
 We want orthonormal $\beta$, not only orthogonal $\beta$. $R$ puts more restrictions on $T$ than $R$ because $T$ does not always split in $R$.
 
-
+So the conclusion is, if the matrix $A$ is complex normal or real symmetric, there is orthonormal basis of eigenvectors of $A$.
 
 % unitary and orthogonal operators
 \subsection{Unitary and Orthogonal Operators}
@@ -310,3 +311,206 @@ Adjoint operation ($T^*$ and $T$) works pretty like conjugate in $C$. There is a
 \begin{definition}
     If $\norm{T(x)} = \norm{x}$, $T$ is called unitary if $F=C$ and orthogonal if $F=R$.
 \end{definition}
+
+We have the same definition for $A$. $AA^*$ for $C$ and $AA^t$ for $R$.
+
+If $AA^* = I$, the rows of $A$ are orthonormal basis for $F^n$. Also if $A^*A = I$, then the columns are orthonormal basis.
+
+
+\begin{theorem}\label{normal_zero_operator}
+    If $T$ is normal and $\innerproduct{x}{Tx} = 0$ for all $x$, then $T=0$.
+\end{theorem}
+\begin{proof}
+    The trick is using $TT$:
+    \begin{equation*}
+        0 = \innerproduct{x + Tx}{T(x + Tx)} = 2 \innerproduct{Tx}{Tx}
+    \end{equation*}
+    So $\innerproduct{Tx}{Tx} = 0$ for all $x$, and $T = 0$
+\end{proof}
+
+
+If $T$ is unitary, it has many good properties. All the followings are equivalent:
+\begin{enumerate}
+    \item $T^*T = I$
+    \item $TT^* = I$
+    \item $\innerproduct{T(x)}{T(y)} = \innerproduct{x}{y}$
+    \item If $\beta$ is an orthonormal basis, then $T(\beta)$ is also an orthonormal basis
+    \item There exists an orthonormal basis $\beta$ that $T(\beta)$ is also an orthonormal basis
+    \item $\norm{T(x)} = \norm{x}$
+\end{enumerate}
+\begin{proof}
+    Assume $TT^* = I$
+    \begin{equation*}
+        \innerproduct{T(x)}{T(y)} = \innerproduct{x}{T^*Ty} = \innerproduct{x}{y}
+    \end{equation*}
+    
+    If $\beta = \set{v_i}$ are orthonormal basis, we have $\innerproduct{T(v_i)}{T(v_j)} = \innerproduct{v_i}{v_j} = \delta_{ij}$, so $T(\beta)$ is also an orthonormal basis.
+    
+    If $\norm{T(x)} = \norm{x}$, we have 
+    \begin{equation*}
+        \innerproduct{x}{x} = \innerproduct{T(x)}{T(x)} = \innerproduct{x}{T^*Tx}
+    \end{equation*}
+    which means $\innerproduct{x}{(T^*T - I)x} = 0$. Because $T^*T - I$ is normal, Theorem~\ref{normal_zero_operator} shows $T^*T = I$
+\end{proof}
+
+These properties shows that if $T$ is unitary, it preserves inner product ($\innerproduct{T(x)}{T(y)} = \innerproduct{x}{y}$) and length ($\norm{T(x)} = \norm{x}$).
+
+\begin{theorem}
+    If $V$ is on $R$, it has an orthonormal basis of eigenvectors with $\absolutevalue{\lambda_i} = 1$ if and only if $T$ is both self-adjoint and orthogonal.     
+    If $V$ is on $C$, $T$ needs to be unitary.
+\end{theorem}
+\begin{proof}
+    If $V$ has orthonormal basis with eigenvectors of $T$, $T$ is self-adjoint (or normal). So $T(T^* v_i) = T (\lambda_i v_i) = \lambda_i (T v_i) = \lambda_i^2 v_i$. Because $\absolutevalue{\lambda_i} = 1$, we have $TT^* v_i = v_i$, so $TT^* = I$.
+    
+    Then for the $R$ case. If $T$ is self-adjoint, there exists orthonormal basis of eigenvectors of $T$. Now if $T$ is also orthogonal, we have $\absolutevalue{\lambda_i} \norm{v_i} = \norm{\lambda_i v_i} = \norm{T (v_i)} = \norm{v_i}$, so $\absolutevalue{\lambda_i} = 1$. For the $C$ case, unitary means normal and we have the same proof.
+\end{proof}
+
+
+If the matrix $A$ is complex normal or real symmetric, there is orthonormal basis of eigenvectors of $A$. These basis form a matrix $Q$ and $D = \inverse{Q} A Q$. This $Q$ is orthogonal because its columns are orthonormal basis. So $\inverse{Q} = Q^*$. Here $D$ and $A$ are called unitarily equivalent (or orthogonally equivalent).
+
+With the definition of unitarily equivalent, the necessary and sufficient condition of being normal could be rephrased:
+\begin{theorem}
+    Let $A$ in $C$. $A$ is normal if and only if $A$ is unitarily equivalent to a diagonal matrix. If $A$ is in $R$, then the condition is orthogonally equivalent.
+\end{theorem}
+
+
+
+
+% rigid motion
+\subsection{Rigid Motion}
+
+Rigid motion analyze how to move a thing without changing its shape.
+
+\begin{definition}[Rigid Motion]
+    Let $V$ be real inner product space. A function $f$ is called rigid motion if 
+    \begin{equation}
+        \norm{f(x) - f(y)} = \norm{x - y}
+    \end{equation}
+\end{definition}
+
+One rigid motion example is rotation:
+\begin{equation}
+    \begin{pmatrix}
+        \cos \theta & - \sin \theta \\
+        \sin \theta & \cos \theta
+    \end{pmatrix}
+\end{equation}
+
+
+We have two more example of rigid motion: reflection and translation.
+
+\begin{definition}[Reflection]
+    Let $L$ be a linear in $R^2$ that passes through the original. $T$ is called reflection about $L$ if $T(x) = x$ for $x \in L$ and $T(x) = -x$ for $x \in L^\perp$.
+\end{definition}
+
+If $L$ has angle $\theta$, reflection $T$ has matrix representation 
+\begin{equation}
+    \begin{pmatrix}
+        \cos 2\theta & \sin 2\theta \\
+        \sin 2\theta & -\cos 2\theta
+    \end{pmatrix}
+\end{equation}
+
+\begin{definition}[Translation]
+    For a vector $v$, a translation $T$ is $T(x) = x + v$ for all $x$.
+\end{definition}
+
+If $f$ is an orthogonal operator, then $\norm{f(x-y)} = \norm{x-y}$, so $f$ is a rigid motion. A orthogonal operator followed by translation is also a rigid motion. The following theorem proves this is the only case.
+
+\begin{theorem}
+    Let $f$ be a rigid motion. Then there exists a unique orthogonal operator $T$ and a unique translation $g$ that $f = g  \circ T$.
+\end{theorem}
+\begin{proof}
+    Define $T(x) = f(x) - f(0)$ and $g(x) = x + f(0)$. Then $\norm{T(x)} = \norm{f(x) - f(0)} = \norm{x - 0} = \norm{x}$. Replace $x$ by $x-y$, we have $\innerproduct{T(x)}{T(y)} = \innerproduct{x}{y}$.
+    
+    The next step is to prove $T$ is a linear transformation. Prove it by proving $\norm{T(x + a y) - T(x) - aT(y)}^2 = 0$. If $T$ is linear and preserves inner product, it is orthogonal.
+\end{proof}
+
+
+It turns out there are only two orthogonal operators in $R^2$. Assume $\beta$ is the standard basis of $R^2$ and let $A = \coordinate{T}_\beta$:
+\begin{enumerate}
+    \item rotation, with $\determinate{A} = 1$
+    \item reflection, with $\determinate{A} = -1$
+\end{enumerate}
+\begin{proof}
+    Since $T$ is orthogonal, $T(\beta)$ is also orthonormal. Assume $T(e_1) = (\cos \theta, \sin \theta)$, the only choice for the other vector is $T(e_2) = (- \sin \theta, \cos \theta)$ or $T(e_2) = (\sin \theta, - \cos \theta)$.
+    
+    If $T(e_2) = (- \sin \theta, \cos \theta)$, $A = \begin{pmatrix}
+                \cos \theta & - \sin \theta \\
+        \sin \theta & \cos \theta
+    \end{pmatrix}$, so it is a rotation by $\theta$.
+    
+    If $T(e_2) = (\sin \theta, - \cos \theta)$, $A = \begin{pmatrix}
+        \cos \theta & \sin \theta \\
+        \sin \theta & -\cos \theta
+    \end{pmatrix}$, so it is a reflection along a line $L$ with $\displaystyle \frac{\theta}{2}$.
+\end{proof}
+
+So in $R^2$, a rigid motion is either a rotation or reflection followed by a translation.
+
+\begin{example}[quadratic form]
+    Now consider the quadratic form $ax^2 + 2bxy + cy^2$. If we let 
+\begin{equation}
+    A = \begin{pmatrix}
+        a & b \\
+        b & c
+    \end{pmatrix} \text{ and } X = \begin{pmatrix}
+        x \\
+        y
+    \end{pmatrix}
+\end{equation}
+
+The quadratic form becomes $X^t A X = \innerproduct{AX}{X}$. Because $A$ is symmetric, there exists an orthogonal matrix $P$ that $D = P^t A P$. Now let $X^\prime = P^t X$, we have $PX^\prime = PP^tX = X$. So $X^t A X = (PX^\prime)^t A (PX^\prime) = {X^\prime}^t (P^t A P) X^\prime = {X^\prime}^t D X^\prime = \lambda_1 (x_1^\prime)^2 + \lambda_2 (x_2^\prime)^2$. Now the quadratic form is simplified.
+
+$P$ may not be the final result because it is possible that $\determinate{P} = -1$. In this case, we could exchange the column of $P$. Now $\lambda_1$ and $\lambda_2$ need to switch order.
+
+The end result is that a quadratic form could be simplified by a rotation.
+\end{example}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
