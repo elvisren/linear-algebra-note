@@ -1,0 +1,312 @@
+\section{Inner Product}
+
+This section does a research on the length property of vector space. 
+
+
+\subsection{Definitions}
+
+Inner product is a function $\innerproduct{x}{y}$ that:
+\begin{itemize}
+    \item $\innerproduct{x + y}{z} = \innerproduct{x}{z} + \innerproduct{y}{z}$    
+    \item $\innerproduct{x}{y+z} = \innerproduct{x}{y} + \innerproduct{x}{z}$
+    \item $\innerproduct{cx}{y} = c \innerproduct{x}{y}$
+    \item $\innerproduct{x}{cy} = \conjugate{c} \innerproduct{x}{y}$
+    \item $\conjugate{\innerproduct{x}{y}} = \innerproduct{y}{x}$
+    \item $\innerproduct{x}{x} \geq 0$
+    \item $\innerproduct{x}{x} = 0$ if and only if $x = 0$
+    \item $\innerproduct{x}{0} = \innerproduct{0}{x} = 0$
+    \item If $\innerproduct{x}{y} = \innerproduct{x}{z}$ for all $x$, then $y = z$
+\end{itemize}
+
+Be careful that inner product could be negative. So it is different from metric which has to be non-negative.
+
+\begin{definition}[conjugate transpose]
+    The conjugate transpose (adjoint) of $A_{m \times n}$ is 
+    \begin{equation}
+        A^* = \conjugate{A^t}
+    \end{equation}
+\end{definition}
+
+Here are the common inner products:
+\begin{itemize}
+    \item For $x,y \in F^n$, $\displaystyle \innerproduct{x}{y} = \sum_{i=1}^n x_i \conjugate{y_i}$
+    \item For $A,B \in M_{n \times n}$, $\innerproduct{A}{B} = \trace{B^* A}$
+    \item For $f,g$, $\displaystyle \innerproduct{f}{g} = \frac{1}{2 \pi} \int_{0}^{2\pi} f(x) \conjugate{g(x)} \dif x$ (inner product space $H$)
+\end{itemize}
+
+
+The norm or length is defined as $\norm{x} = \sqrt{\innerproduct{x}{x}}$
+
+There are several famous equations:
+\begin{itemize}
+    \item $\norm{cx} = \absolutevalue{c} \norm{x}$
+    \item $\norm{x} \geq 0$
+    \item $\norm{\innerproduct{x}{y}} \leq \norm{x} \cdot \norm{y}$
+    \item $\norm{x+y} \leq \norm{x} + \norm{y}$
+\end{itemize}
+\begin{proof}
+    The proof relies on $\norm{x} \geq 0$.
+\end{proof}
+
+
+\begin{definition}
+    For a inner product space $V$:
+    \begin{enumerate}
+        \item orthogonal: $\innerproduct{x}{y} = 0$
+        \item unit vector: $\norm{x} =0$
+        \item orthonormal: a subset $S$ of $V$ is orthonormal if $S$ is orthogonal with unit vectors
+    \end{enumerate}
+\end{definition}
+
+A orthonormal set is linearly independent.
+
+The orthonormal basis of inner product space $H$ are $f_n(t) = e^{int}$ for $n \in R^+$ because $\innerproduct{f_m}{f_n} = \delta_{mn} $.
+
+
+
+
+% orthogonal
+\subsection{Orthogonal Projection}
+
+For an orthogonal subset $S=\set{v_1, v_2, ..., v_k}$ of $V$, the projection $u$ of $y$ on $S$ is 
+\begin{equation}
+    u = \sum_{i=1}^k \frac{\innerproduct{y}{v_i}}{\innerproduct{v_i}{v_i}} v_i
+\end{equation}
+
+If $y \in \spanset{S}$, then $\displaystyle y = u$. If $S$ is orthonormal, then $\displaystyle y = \sum_{i=1}^k \innerproduct{y}{v_i} v_i$. 
+
+The orthogonal projection $u$ is the closest vector to $y$. So if there is any other $x \in \spanset{S}$, $\norm{y - x} \geq \norm{y - u}$. Another property is $y - u \perp \spanset{S}$.
+
+
+\begin{definition}[orthogonal complement]
+    For a subset $S$ (not need to be vector space) of $V$, the orthogonal complement $S^\perp$ is defined as $S^\perp=\set{x \in V: \forall y \in S, \innerproduct{x}{y} = 0}$.
+\end{definition}
+
+
+
+\begin{theorem}[Gram-Schmidt process]\label{gram_schmidt_process}
+    The steps of converting a linearly independent subset $S=\set{w_1, w_2, ..., w_k}$ into orthogonal set $S^\prime=\set{v_1, v_2, ..., v_k}$. The idea is to project $v_{j}$ onto $\set{v_1, v_2, ..., v_{j-1}}$ and remove the projection from $v_j$. So
+    \begin{equation}
+        v_j = w_j - \sum_{i=1}^{j-1} \frac{\innerproduct{w_j}{v_i}}{\innerproduct{v_i}{v_i}} v_i
+    \end{equation}
+    Sometimes we could take the next step to normalize $S^\prime$ by dividing $v_i$ with its norm: $\displaystyle \frac{v_i}{\norm{v_i}}$.
+\end{theorem}
+
+With orthonormal basis $\beta = \set{v_1, v_2, ..., v_n}$, the we could represent vectors and linear operators using basis directly:
+\begin{itemize}
+    \item $\displaystyle x = \sum_{i=1}^n \innerproduct{x}{v_i} v_i$
+    \item $\coordinate{T}_{ij} = \innerproduct{T(v_j)}{v_i}$ (extremely useful)
+    \item For $g: V \rightarrow F$, $g(x) = \innerproduct{x}{\sum_{i=1}^n \conjugate{g(v_i)} v_i}$
+\end{itemize}
+
+
+% adjoint
+\subsection{Adjoint}
+
+
+\begin{theorem}
+    Let $T$ be linear operator on a finite-dimension inner product space $V$. There is a unique linear operator $T^*$ that $\innerproduct{T(x)}{y} = \innerproduct{x}{T^* (y)}$.
+\end{theorem}
+\begin{proof}
+    Linearity is easy to prove. To find $T^*$, for each $y$, there is a function $g_y (x) = \innerproduct{T(x)}{y} = \innerproduct{x}{g^\prime (y)}$. This $g^\prime$ is the $T^*$.
+\end{proof}
+
+$T^*$ has a nice property that $\innerproduct{x}{T(y)} = \innerproduct{T^* (x)}{y}$. So we could move $T$ left or right inside the inner product.
+
+\begin{theorem}\label{operator_conjugate_transpose_requirement}
+    Let $\beta$ be an orthonormal basis of $V$, for a linear operator $T$, we have
+    \begin{equation}
+        \coordinate{T^*}_\beta = (\coordinate{T}_\beta)^*
+    \end{equation}
+    Be very careful that $\beta$ must be orthonormal.
+\end{theorem}
+\begin{proof}
+    Because $\beta$ is orthonormal, we have
+    \begin{equation*}
+        (\coordinate{T^*}_\beta)_{ij} = \innerproduct{T^* (v_j)}{v_i} = \innerproduct{v_j}{T(v_i)} = \conjugate{\innerproduct{T(v_i)}{v_j)}} = \conjugate{(\coordinate{T}_\beta))_{ji}}
+    \end{equation*}
+\end{proof}
+
+\begin{theorem}
+    Let $L_A$ be a linear operator. We have
+    \begin{equation}
+        \rangespace{L_{A^*}} \perp \nullspace{L_A}
+    \end{equation}
+    This formula is very useful because it find two perpendicular subspaces from $A$.
+\end{theorem}
+\begin{proof}
+    For $x \in \nullspace{L_A}$, we have $Ax = 0$, so $\innerproduct{y}{Ax} = 0$ for all $y$. So $\innerproduct{A^* y}{x} = 0$ and $x \perp A^*y$.
+\end{proof}
+
+
+
+\begin{example}[Least Square]
+    For a list of points $(x_i, y_i)$, we want to find $x_0$ that $\norm{y - Ax_0}$ is minimum. $Ax$ is a subspace, so we want to project $y$ on it and find the projection. If $Ax_0$ is the projection, then $y - Ax_0 \perp Ax$, so $\innerproduct{Ax}{y - Ax_0} = 0$. so $\innerproduct{x}{A^* (Ax_0 - y)} = 0$ for all $x$, which means $A^* (Ax_0 - y) = 0$.
+\end{example}
+
+\begin{example}[Minimal Solution]
+    For all solutions to $Ax=b$, we want to find the solution with minimal norm $\norm{s}$. Define $W = \rangespace{L_{A^*}}$ and $W^\perp = \nullspace{L_A}$. Because $W \perp W^\perp$, we have $x = s + y$ where $s \in W$ and $y \in W^\perp$. So $b = Ax = As + Ay = As$ and $s$ is a solution.
+    
+    To prove $s$ is minimal, use the property that if $s \perp y$, then $\norm{s+y}^2 = \norm{s}^2 + \norm{y}^2$. So $s$ is the only solution to $Ax=b$ that lies in $\rangespace{L_{A^*}}$.
+    
+    What's more, if $(AA^*)u = b$, then $s = A^* u$. This is because $s = A^* u \in \rangespace{L_{A^*}}$ and $As = AA^*u = b$. $s$ is the only vector with such property.
+    
+    Importance of this example: in linear equation chapter we have proved that the solution to $Ax=b$ are $x_0 +  \nullspace{L_A}$. Here $x_0$ could be any solution to $Ax=b$. This example shows we could find a very special solution $x_0 = s$ that $s \perp \nullspace{L_A}$.
+\end{example}
+
+
+
+\begin{theorem}
+    Let $T$ be linear operator, we have that $\norm{T(x)} = \norm{x}$ if and only if $\innerproduct{T(x)}{T(y)} = \innerproduct{x}{y}$.
+\end{theorem}
+\begin{proof}
+    Use the property that $\innerproduct{x}{y} = \frac{1}{4}\norm{x+y}^2 - \frac{1}{4}\norm{x-y}^2$.
+\end{proof}
+
+
+
+% normal
+\subsection{Normal and Self-adjoint Operators}
+
+The purpose here is to find orthonormal basis of eigenvectors. If $T$ has eigenvalue, we want to know whether $T^*$ has one too. With stronger assumption on $T$, the eigenvalue could even be the same. Actually the conclusion is:
+\begin{enumerate}
+    \item $T^*$ always has eigenvalue (Theorem~\ref{congjugate_transpose_has_eigenvalue})
+    \item If $T$ is normal, then the eigenvalue of $T$ and $T^*$ are the same
+\end{enumerate}
+
+
+We need to link eigenvalue with conjugate transpose. For a eigenvalue $\lambda$ of $T$, we have $(T - \lambda I)v = 0$ for each eigenvector. So $\innerproduct{(T-\lambda I)v}{x} = 0$. So $0$ is used first in characteristic polynomial, and then used in inner product. Now we prove the following Theorem~\ref{congjugate_transpose_has_eigenvalue}.
+
+\begin{theorem}\label{congjugate_transpose_has_eigenvalue}
+    If $T$ has eigenvalue, then $T^*$ has eigenvalue.    
+\end{theorem}
+\begin{proof}
+    \begin{equation*}
+        0 = \innerproduct{(T-\lambda I)v}{x} = \innerproduct{v}{(T-\lambda I)^* x} = \innerproduct{v}{(T^* - \conjugate{\lambda}I) x}
+    \end{equation*}
+    
+    So $v \perp \spanset{T^* - \conjugate{\lambda}I}$, which means $T^* - \conjugate{\lambda}I$ has nonzero null space.
+\end{proof}
+
+
+For usual $F$, there is always orthonormal basis if $T$ split, so we have the following theorem:
+\begin{theorem}[Schur]\label{schur_theorem}
+    If the characteristic polynomial of $T$ splits, then there exists an orthonormal basis $\gamma$ such that $\coordinate{T}_\gamma$ is upper triangular.
+\end{theorem}
+\begin{proof}
+    By Theorem~\ref{split_means_upper_trangular} on Page~\pageref{split_means_upper_trangular} we know if $T$ splits, there is a basis $\beta$ that $\coordinate{T}_\beta$ is upper triangular. Then use the Gram-Schmidt process (Theorem~\ref{gram_schmidt_process} on Page~\pageref{gram_schmidt_process}) to normalize $\beta$ and we have $\gamma$.
+\end{proof}
+
+If by any chance the basis of $\gamma$ are eigenvectors, we have even better property. Since $\gamma$ are eigenvectors, $\coordinate{T}_\gamma$ is a diagonal matrix. Since $\coordinate{T^*}_\gamma = (\coordinate{T}_\gamma)^*$, $\coordinate{T^*}_\gamma$ is also a diagonal matrix. Since two diagonal matrices commute, we have $TT^* = T^* T$. This is why we would like to find basis of eigenvectors. $TT^* = T^* T$ has a special definition below.
+
+\begin{definition}[Normal]
+    $T$ is normal if $TT^* = T^* T$. $A$ is normal if $AA^* = A^* A$.
+\end{definition}
+
+A common mistake is to think that $T$ is normal if and only if $\coordinate{T}_\beta$ is normal. Here $\beta$ has to be orthonormal according to Theorem~\ref{operator_conjugate_transpose_requirement} on Page~\pageref{operator_conjugate_transpose_requirement}.
+
+$T$ will have many nice properties if it is normal:
+\begin{itemize}
+    \item $\norm{T(x)} = \norm{T^* (x)}$
+    \item $T - cI$ is normal
+    \item If $(T - \lambda I)x = 0$, then $(T^* - \conjugate{\lambda}I)x = 0$. So $T$ and $T^*$ share the same eigenvector with conjugate of eigenvalue.
+    \item If $a$ and $b$ are eigenvector for eigenvalue $\lambda_1$ and $\lambda_2$, then $a \perp b$.
+\end{itemize}
+\begin{proof}
+    \begin{equation*}
+        \norm{T(x)}^2 = \innerproduct{T(x)}{T(x)} = \innerproduct{T^*T(x)}{x} = \innerproduct{TT^*(x)}{x} = \innerproduct{T^*(x)}{T^*(x)} = \norm{T^*(x)}^2
+    \end{equation*}
+    \begin{equation*}
+        (T-cI)(T-cI)^* = (T-cI)(T^* - \conjugate{c}I) = ... = (T-cI)^*(T-cI)
+    \end{equation*}
+    Because $T-cI$ is normal when $T$ is normal, so
+    \begin{equation*}
+        0 = \norm{(T-cI)x} = \norm{(T-cI)^* x} =  \norm{(T^*- \conjugate{\lambda} I)x}
+    \end{equation*}
+    which means $(T^*- \conjugate{\lambda} I)x = 0$. So $\conjugate{\lambda}$ is an eigenvalue of $T^*$ and $x$ is its eigenvector.
+    \begin{equation*}
+        \lambda_1 \innerproduct{a}{b} = \innerproduct{\lambda_1 a}{b} = \innerproduct{Ta}{b} = \innerproduct{a}{T^*b} = \innerproduct{a}{\conjugate{\lambda_2}b} = \lambda_2 \innerproduct{a}{b} \Rightarrow (\lambda_1 - \lambda_2)\innerproduct{a}{b} = 0
+    \end{equation*}
+    Since $\lambda_1 \neq \lambda_2$, we have $\innerproduct{a}{b} = 0$ and $a \perp b$.
+\end{proof}
+
+
+One interesting finding is that for basis $\set{v_i}$ of $V$:
+\begin{itemize}
+    \item $v_i$ are orthonormal $\Rightarrow$ $T_{ji} = \innerproduct{T(v_i)}{v_j}$
+    \item $v_i$ are orthonormal eigenvalues of $T$ $\Rightarrow$ $\innerproduct{T(v_i)}{v_j} = \innerproduct{\lambda_i v_i}{v_j}$
+\end{itemize}
+
+
+Now we come the most important theorem of this section.
+
+\begin{theorem}\label{normal_orthonormal_with_complex_space}
+    For finite-dimension inner product space $V$ on $F=C$, $T$ is normal if and only if there exists orthonormal basis that are eigenvectors of $T$.
+\end{theorem}
+\begin{proof}
+    If such basis exists, the coordinates of $T$ and $T^*$ are diagonal matrix, so they commute. We do not need the complex feature here. The difficult is on the other side of proof and we need the complex property.
+    
+    Because complex polynomials always split, by Theorem~\ref{schur_theorem} on Page~\pageref{schur_theorem}, there is orthonormal (very important) $\beta$ that $A=\coordinate{T}_\beta$ is an upper triangular matrix. Assume the first $k-1$ columns are eigenvectors, let's see what happens to $v_{k}$. Since $A$ is upper triangular, we have
+    \begin{equation*}
+        T(v_k) = A_{1k} v_1 + A_{2k} v_2 + ... + A_{kk} v_k
+    \end{equation*}
+    Because $\beta$ is orthonormal, we could directly calculate $A_{jk}$:
+    \begin{equation*}
+        A_{jk} = \innerproduct{T(v_k)}{v_j} = \innerproduct{v_k}{T^*(v_j)} = \innerproduct{v_k}{\conjugate{\lambda_j} v_j} = \lambda \innerproduct{v_k}{v_j} = 0
+    \end{equation*}
+    
+    So the result is a diagonal matrix and $\beta$ are all eigenvectors.
+\end{proof}
+
+Theorem~\ref{normal_orthonormal_with_complex_space} did not work for $F=R$ because polynomials do not always split. So in order to find the necessary and sufficient condition of normality, we need stronger restriction, which is self-adjoint.
+
+\begin{definition}[Hermitian, self-adjoint]
+    $T$ is Hermitian (self-adjoint) if $T = T^*$. So is it for $A$.
+\end{definition}
+
+If $T$ is self-adjoint, it has even better properties:
+\begin{enumerate}
+    \item Every eigenvalue of $T$ is real
+    \item If $V$ is on $F=R$, $T$ still splits
+\end{enumerate}
+\begin{proof}
+    \begin{equation*}
+        \lambda x = Tx = T^* x = \conjugate{\lambda} x
+    \end{equation*}
+    So $\lambda = \conjugate{\lambda}$ and $\lambda$ is real.
+    
+    For second property, take $F=C$ and $T$ splits in $C$. But all eigenvalues are real, so $T$ splits in $R$.
+\end{proof}
+
+\begin{theorem}
+    For finite-dimension inner product space $V$ on $F=R$, $T$ is self-adjoint if and only if there exists orthonormal basis that are eigenvectors of $T$.
+\end{theorem}
+\begin{proof}
+    If $T$ is self-adjoint, it splits. So we apply Theorem~\ref{schur_theorem} on Page~\pageref{schur_theorem} to find basis $\beta$ that $A = \coordinate{T}_\beta$ is upper triangular. But
+    \begin{equation*}
+        A^* = (\coordinate{T}_\beta)^* = \coordinate{T^*}_\beta = \coordinate{T}_\beta = A
+    \end{equation*}
+    
+    So $A$ is a diagonal matrix and $\beta$ are eigenvectors.
+\end{proof}
+
+A quick summary of important theorems:
+\begin{enumerate}
+    \item If $T$ splits, there is $\beta$ that $\coordinate{T}_\beta$ that is upper triangular
+    \item $\beta$ could be orthogonal using Gram-Schmidt process
+    \item $\beta$ could be orthonormal if $T$ is normal (in $C$)
+    \item $\beta$ could be orthonormal if $T$ is self-adjoint (in $R$)
+\end{enumerate}
+
+We want orthonormal $\beta$, not only orthogonal $\beta$. $R$ puts more restrictions on $T$ than $R$ because $T$ does not always split in $R$.
+
+
+
+% unitary and orthogonal operators
+\subsection{Unitary and Orthogonal Operators}
+
+Adjoint operation ($T^*$ and $T$) works pretty like conjugate in $C$. There is a special $i \in C$  that $i \conjugate{i} = 1$, so we would like to examine what happens when $TT^* = T^* T = I_n$. It turns out that these $T$ could preserve length.
+
+\begin{definition}
+    If $\norm{T(x)} = \norm{x}$, $T$ is called unitary if $F=C$ and orthogonal if $F=R$.
+\end{definition}

@@ -1,6 +1,7 @@
 \section{Cookbook}
 
-Famous sets:
+\subsection{Famous Sets}
+
 \begin{enumerate}
     \item $\mathcal{P}(F)$: the set of all polynomials
     \item $\mathcal{P}_n (F)$: the set of all polynomials with degree $\leq n$
@@ -9,8 +10,23 @@ Famous sets:
     \item $C^\infty (R)$: the set of all functions that has derivatives of all orders
 \end{enumerate}
 
-Famous relationship:
+\subsection{Famous Relationship}
 \begin{enumerate}
     \item similar: Matrix $A$ and $B$ are similar if there is a $Q$ that $A = \inverse{Q} B Q$
     \item isomorphic: $V$ and $W$ are isomorphic if there is an invertible linear transformation $T:V \rightarrow W$
 \end{enumerate}
+
+
+\subsection{Tricks in Proving Theorem}
+
+\begin{enumerate}
+    \item Use $T^*$ to move $T$ to either the left or the right side of inner product using $\innerproduct{T(x)}{y} = \innerproduct{x}{T^* (y)}$
+    \item If $x$ is an eigenvector and $\lambda$ is an eigenvalue, move $\lambda$ inside an inner product, such as $\lambda \innerproduct{x}{\cdot} = \innerproduct{\lambda x}{\cdot} = \innerproduct{Tx}{\cdot}$.
+    \item If $x=0$, we could create inner product $\innerproduct{x}{\cdot} = 0$ and use properties of $x$. Some tricks are:
+        \begin{itemize}
+            \item $x$ could be $Tx$, then we use $T$ and $T^*$ inside inner product
+            \item $x$ could be $Ay$ where $y \in \nullspace{A}$
+            \item $x$ could be $(T - \lambda I_n)x$. If $T$ is normal, $T-\lambda I_n$ is also normal, so we could move $T-\lambda I_n$ around the inner product
+        \end{itemize}
+\end{enumerate}
+

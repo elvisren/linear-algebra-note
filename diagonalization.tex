@@ -1,9 +1,14 @@
 \section{Diagonalization}
 
+\subsection{Why it is useful}
+
+
+The reason we do research on diagonalization is to simplify calculation. If a square matrix is diagonalizable, the result is a diagonal matrix, which is each to multiply.
+
+Diagonalization process will find eigenvectors. These special vectors have a special property that after the result of linear transformation are still themselves with different length. Because these eigenvectors are the basis of vector space, we could try to understand the behavior of the linear transformation through these eigenvectors.
 
 \subsection{Definition}
 
-The reason we do research on diagonalization is to simplify calculation. If a square matrix is diagonalizable, the result is a diagonal matrix, which is each to multiply.
 
 A linear operator $T$ is diagonalizable if there is a basis $\beta$ of $V$ that $\coordinate{T}_\beta$ is a diagonal matrix. A square matrix $A$ is diagonalizable if $L_A$ is diagonalizable.
 
@@ -81,7 +86,7 @@ The test for diagonalizability now requires $\dimension{E_\lambda} = m$ for each
 \end{enumerate}
 
 \begin{definition}
-    Let $W_i$ be subspace of $V$. If $W_i \cap \sum_{j \neq i} W_j = \emptyset$, we define direct sum $W = \bigoplus_{j \neq i} W_j$
+    Let $\set{W_i}$ be subspace of $V$. If $W_i \cap \sum_{j \neq i} W_j = \emptyset$ for all $i$, we define direct sum $W = \bigoplus_{j} W_j$
 \end{definition}
 
 \begin{theorem}
@@ -172,7 +177,7 @@ Invariant subspace is very useful because it could split the big matrix represen
 
 \subsection{Advanced Topics}
 
-\begin{theorem}
+\begin{theorem}\label{split_means_upper_trangular}
     If the characteristic polynomial splits, $A$ is similar to an upper diagonal matrix    
 \end{theorem}
 \begin{proof}
