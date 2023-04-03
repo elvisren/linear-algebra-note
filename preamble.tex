@@ -1,5 +1,10 @@
-\documentclass[reqno,16pt]{book}
-\usepackage{amssymb}
+\documentclass[reqno, 12pt]{book}
+
+
+% do not use it. conflict with mtp2font
+%\usepackage{amssymb}
+
+
 \usepackage{latexsym}
 
 
@@ -15,10 +20,10 @@
 %\newtheorem{theorem}{Theorem}
 
 \usepackage{thmtools}
-\declaretheorem{theorem}
-\declaretheorem{definition}
-\declaretheorem{example}
-\declaretheorem{axiom}
+\declaretheorem[thmbox=M]{theorem}
+\declaretheorem[thmbox=M]{definition}
+\declaretheorem[thmbox=M]{example}
+\declaretheorem[thmbox=M]{axiom}
 
 
 
@@ -46,7 +51,7 @@
 % set line space
 \usepackage{setspace}
 
-\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=green]{hyperref}
+\usepackage[colorlinks,linkcolor=black,anchorcolor=black,citecolor=black]{hyperref}
 
 % set page size
 \usepackage{geometry}
@@ -68,7 +73,17 @@
 
 
 
+% user MathTime professional 2. so expensive...
+\usepackage{newtxtext}
+\usepackage[T1]{fontenc}
+\usepackage[subscriptcorrection,slantedGreek,nofontinfo,mtpcal,mtpfrak,mtphrb]{mtpro2}
+
+
+
 \newcommand\mathhilight[1]{\mathop{\bf #1\/}}
+
+\newcommand\theoref[1]{Theorem~\ref{#1}\footnote{Page~\pageref{#1}}}
+\newcommand\defiref[1]{Definition~\ref{#1}\footnote{Page~\pageref{#1}}}
 
 
 %linear algebra
@@ -82,16 +97,15 @@
 \newcommand\rowvector[1]{\left[ \displaystyle #1 \right]}
 \newcommand\inverse[1]{ {#1}^{-1} }
 
-\newcommand\dimension[1]{\displaystyle \mathbf{dim}\left( #1 \right)}
-\newcommand\vectorspan[1]{\displaystyle \mathbf{span}\left( #1 \right)}
-\newcommand\rank[1]{\displaystyle \mathbf{rank}\left( #1 \right)}
+\newcommand\dimension[1]{\displaystyle \text{dim}\left( #1 \right)}
+\newcommand\rank[1]{\displaystyle \text{rank}\left( #1 \right)}
 \newcommand\innerproduct[2]{\left\langle \displaystyle #1, #2 \right\rangle}
-\newcommand\trace[1]{\displaystyle \mathbf{tr}( #1 )}
-\newcommand\spanset[1]{\displaystyle \mathbf{span}\left( #1 \right)}
+\newcommand\trace[1]{\displaystyle \text{tr}( #1 )}
+\newcommand\spanset[1]{\displaystyle \text{span}\left( #1 \right)}
 
 
-\newcommand\adjugate[1]{\displaystyle \mathbf{adj} ~\displaystyle #1 }
-\newcommand\cofactor[1]{\displaystyle \mathbf{cof} ~\displaystyle #1 }
+\newcommand\adjugate[1]{\displaystyle \text{adj} ~\displaystyle #1 }
+\newcommand\cofactor[1]{\displaystyle \text{cof} ~\displaystyle #1 }
 
 \newcommand\columnvector[1]{\boldsymbol{#1}}
 % \newcommand\norm[1]{\displaystyle \left\lVert #1 \right\rVert}

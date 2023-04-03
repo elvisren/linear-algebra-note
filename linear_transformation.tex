@@ -63,6 +63,7 @@ For linear transformation $T$ from $\beta = \set{v_i} $ to $\gamma = \set{w_j}$,
 \subsection{Matrix Multiplication}
 
 Linear transformation is linear in $+$ and $\times$ operations. So we could define the product of two linear transformations $UT$. It turns out to be the standard matrix multiplication. And we have
+
 \begin{equation}\label{matrix_coordinate}
     \coordinate{UT}_{\alpha}^{\gamma} = \coordinate{U}_{\beta}^{\gamma} \coordinate{T}_{\alpha}^{\beta}
 \end{equation}
@@ -80,7 +81,7 @@ Let $u_j$ and $v_j$ be the $j$th column of $AB$ and $B$, we have
     \end{equation}    
 \end{theorem}
 \begin{proof}
-    Fix a $u$. It defines a function $f: F \rightarrow V$ as $f(a) = au$, and $\set{1}$ is the standard basis for $F$. let $g=Tf$ and use Theorem~\ref{matrix_coordinate} to prove it: $\coordinate{T(u)}_\gamma = \coordinate{g(1)}_\gamma = \coordinate{g}_{\alpha}^{\gamma}$.
+    The idea is to find a linear transformation of $u$. Fix a $u$ and define a function $f: F \rightarrow V$ as $f(a) = au$, and $\set{1}$ is the standard basis for $F$. So $u = \coordinate{f}_{\set{1}}$. Let $g=Tf$ and use Formula~\ref{matrix_coordinate} to prove it: $\coordinate{T(u)}_\gamma = \coordinate{g(1)}_\gamma = \coordinate{g}_{\alpha}^{\gamma}$.
 \end{proof}
 
 From any matrix $A$, we could define a left multiplication transformation $L_A$.
@@ -102,6 +103,8 @@ Matrix $A$ and $B$ are similar if there is a $Q$ that $A = \inverse{Q} B Q$.
 % change of coordinates
 \subsection{Change of Coordinates}
 
+If we change the basis of a vector space, we may change the coordinate of vector and linear operatos.
+
 We now examine the coordinate relations given two basis. First we see how it impacts vector representation. Let $\beta$ and $\beta^{\prime}$ be two basis of $V$, and $Q=\coordinate{I_V}_{\beta^\prime}^\beta$ , we have 
 \begin{equation}
     \coordinate{v}_\beta = Q \coordinate{v}_{\beta^\prime}
@@ -110,7 +113,7 @@ We now examine the coordinate relations given two basis. First we see how it imp
 Where $Q$ is the change of coordinate matrix that change from $\beta^\prime$ coordinates into $\beta$ coordinates. $Q$ is invertible and $\inverse{Q}$ will change from $\beta$ coordinates into $\beta^\prime$ coordinates. 
 
 Then we see how it will impact the matrix representation of linear operators:
-\begin{equation}
+\begin{equation}\label{change_of_coordinate_formula}
     \coordinate{T}_{\beta^\prime} = \inverse{Q} \coordinate{T}_{\beta} Q
 \end{equation}
 

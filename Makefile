@@ -36,7 +36,7 @@ else
 endif
 
 # Program Defintions
-TEX    = xelatex
+TEX    = pdflatex
 BIBTEX = bibtex
 RM     = $(if $(filter $(OS_TYPE),Windows),del /f /q ,rm -f )
 
@@ -49,19 +49,9 @@ clean:
 			*.lof *.log *.lot *.maf *.mtc \
 			*.mtc0 *.nav *.nlo *.out *.pdfsync \
 			*.pyg *.snm *.synctex.gz *.thm *.toc \
-			*.vrb *.xdy *.tdo 
-	-@echo "clean project done."
-	
-reallyclean:
-	-$(RM) *.acn *.acr *.alg *.aux *.bbl \
-			*.blg *.dvi *.fdb_latexmk *.glg *.glo \
-			*.gls *.idx *.ilg *.ind *.ist \
-			*.lof *.log *.lot *.maf *.mtc \
-			*.mtc0 *.nav *.nlo *.out *.pdfsync \
-			*.pyg *.snm *.synctex.gz *.thm *.toc \
 			*.vrb *.xdy *.tdo \
 			$(TARGET).pdf
-	-@echo "really clean project done."
+	-@echo "clean project done."
 
 open:
 	-@echo "Open $(TARGET).pdf"
