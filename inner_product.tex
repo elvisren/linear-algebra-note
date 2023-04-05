@@ -97,8 +97,10 @@ The orthogonal projection $u$ is the closest vector to $y$. So if there is any o
 
 
 \begin{definition}[orthogonal complement]
-    For a subset $S$ (not need to be vector space) of $V$, the orthogonal complement $S^\perp$ is defined as $S^\perp=\set{x \in V: \forall y \in S, \innerproduct{x}{y} = 0}$.
+    For a subset $S$ of $V$, the orthogonal complement $S^\perp$ is defined as $S^\perp=\set{x \in V: \forall y \in S, \innerproduct{x}{y} = 0}$.
 \end{definition}
+
+Here $S$ does not have to be a vector space. It could be any set and $(S^\perp)^\perp$ is usually not the same as $S$. 
 
 
 
@@ -140,14 +142,19 @@ Once we have orthonormal basis $\beta = \set{v_1, v_2, ..., v_n}$,  we could dir
 \subsection{Adjoint}
 
 
-\begin{theorem}
-    Let $T$ be linear operator on a finite-dimension inner product space $V$. There is a unique linear operator $T^*$ that $\innerproduct{T(x)}{y} = \innerproduct{x}{T^* (y)}$.
-\end{theorem}
+\begin{definition}[Adjoint]\label{adjoint_operator_definition}
+    Let $T$ be linear operator on a finite-dimension inner product space $V$. There is a unique linear operator $T^*$ that $\innerproduct{T(x)}{y} = \innerproduct{x}{T^* (y)}$. $T^*$ is the adjoint of $T$.
+\end{definition}
 \begin{proof}
     Linearity is easy to prove. To find $T^*$, for each $y$, there is a function $g_y (x) = \innerproduct{T(x)}{y} = \innerproduct{x}{g^\prime (y)}$. This $g^\prime$ is the $T^*$.
 \end{proof}
 
 $T^*$ has a nice property that $\innerproduct{x}{T(y)} = \innerproduct{T^* (x)}{y}$. So we could move $T$ left or right inside the inner product.
+
+For matrix $A_{m \times n}$, it has a nice property:
+\begin{equation}
+    \innerproduct{A x_n}{y_m}_m = \innerproduct{x_n}{A^* y_m}_n
+\end{equation}
 
 \begin{theorem}\label{operator_conjugate_transpose_requirement}
     Let $\beta$ be an orthonormal basis of $V$, for a linear operator $T$, we have
@@ -187,18 +194,6 @@ $T^*$ has a nice property that $\innerproduct{x}{T(y)} = \innerproduct{T^* (x)}{
     So $v \perp \spanset{T^* - \conjugate{\lambda}I}$, which means $T^* - \conjugate{\lambda}I$ has nonzero null space.
 \end{proof}
 
-
-\begin{theorem}
-    Let $T$ be linear operator, we have that $\norm{T(x)} = \norm{x}$ if and only if $\innerproduct{T(x)}{T(y)} = \innerproduct{x}{y}$.
-    
-    Note: it will be proved later that $T$ is unitary (or orthogonal).
-\end{theorem}
-\begin{proof}
-    Use the property that $\innerproduct{x}{y} = \frac{1}{4}\norm{x+y}^2 - \frac{1}{4}\norm{x-y}^2$.
-\end{proof}
-
-
-
 \begin{example}[Least Square]
     For a list of points $(x_i, y_i)$, we want to find $x_0$ that $\norm{y - Ax_0}$ is minimum. $Ax$ is a subspace, so we want to project $y$ on it and find the projection. If $Ax_0$ is the projection, then $y - Ax_0 \perp Ax$, so $\innerproduct{Ax}{y - Ax_0} = 0$. so $\innerproduct{x}{A^* (Ax_0 - y)} = 0$ for all $x$, which means $A^* (Ax_0 - y) = 0$.
 \end{example}
@@ -217,7 +212,7 @@ $T^*$ has a nice property that $\innerproduct{x}{T(y)} = \innerproduct{T^* (x)}{
 
 
 % normal
-\subsection{Normal and Self-adjoint Operators}
+\subsection{Normal Operators}
 
 The purpose here is to find a special basis of $V$:
 \begin{itemize}
@@ -283,7 +278,14 @@ Now we come the most important theorem of this section.
     So the result is a diagonal matrix and $\beta$ are all eigenvectors.
 \end{proof}
 
+Being both orthonormal and eigenvector means there is a diagonal of eigenvalues $D$ that $D = Q^* A Q$ where $Q^* = \inverse{Q}$.
+
+
 One corollary is that a normal transformation can be diagonalized because we could find a basis  of eigenvectors.
+
+
+
+\subsection{Self-adjoint Operators}
 
 \theoref{normal_orthonormal_with_complex_space} did not work for $F=R$ because polynomials do not always split. So we need stronger restriction to make it split in $R$, which is self-adjoint.
 
@@ -309,7 +311,7 @@ If $T$ is self-adjoint, it has even better properties:
     For finite-dimension inner product space $V$ on $F=R$, $T$ is self-adjoint if and only if there exists orthonormal basis that are eigenvectors of $T$.
 \end{theorem}
 \begin{proof}
-    If $T$ is self-adjoint, it splits. So we apply \theoref{schur_theorem} to find basis $\beta$ that $A = \coordinate{T}_\beta$ is upper triangular. But
+    If $T$ is self-adjoint, it splits. So we apply \theoref{schur_theorem} to find orthonormal basis $\beta$ that $A = \coordinate{T}_\beta$ is upper triangular. But
     \begin{equation*}
         A^* = \left(\coordinate{T}_\beta\right)^* = \coordinate{T^*}_\beta = \coordinate{T}_\beta = A
     \end{equation*}
@@ -401,15 +403,25 @@ If $AA^* = I$, the rows of $A$ are orthonormal basis for $F^n$. Also if $A^*A = 
 \end{proof}
 
 
+\begin{definition}[Unitarily Equivalent]
+    If the matrix $A$ is complex normal or real symmetric, there is orthonormal basis of eigenvectors of $A$. These basis form a matrix $Q$ and $D = \inverse{Q} A Q$. This $Q$ is orthogonal because its columns are orthonormal basis. So $\inverse{Q} = Q^*$. Here $D$ and $A$ are called unitarily equivalent (or orthogonally equivalent). Here we did not require $A$ to be unitary or orthogonal.
+\end{definition}
 
-If the matrix $A$ is complex normal or real symmetric, there is orthonormal basis of eigenvectors of $A$. These basis form a matrix $Q$ and $D = \inverse{Q} A Q$. This $Q$ is orthogonal because its columns are orthonormal basis. So $\inverse{Q} = Q^*$. Here $D$ and $A$ are called unitarily equivalent (or orthogonally equivalent). Here we did not require $A$ to be unitary or orthogonal.
 
 With the definition of unitarily equivalent, the necessary and sufficient condition of being normal could be rephrased:
+
 \begin{theorem}
     Let $A$ in $C$. $A$ is normal if and only if $A$ is unitarily equivalent to a diagonal matrix. If $A$ is in $R$, then the condition is orthogonally equivalent.
 \end{theorem}
 
+The relationship among normal, unitary, unitarily equivalent are complex:
+\begin{enumerate}
+    \item If $A$ is normal, there is diagonal $D$ that $D = \inverse{Q} A Q$. $Q$ here is unitary
+    \item If $A$ is normal and unitary, (unitary means normal), there is still such $D$ and $Q$, with $\absolutevalue{\lambda_i} = 1$
+    \item If $D = Q^* A Q$ and $Q$ is unitary, $A$ and $D$ are unitarily equivalent
+\end{enumerate}
 
+So the unitary is sometimes on $A$ and sometimes on $Q$.
 
 
 % rigid motion
@@ -511,25 +523,315 @@ The end result is that a quadratic form could be simplified by a rotation.
 
 
 
+% spectral theorem
+\subsection{Spectral Theorem}
+
+\begin{definition}[Orthogonal Projection]
+    First we need to define projection. Let $V = W_1 \oplus W_2$. For $x = a + b$ where $a \in W_1$ and $b \in W_2$, if $T(x) = a$, then $T$ is a projection on $W_2$ along $W_1$.
+    
+    There is a property that $T$ is a projection if and only if $T^2 = T$.
+    
+    $T$ is an orthogonal projection if $\rangespace{T}^\perp = \nullspace{T}$ and $\nullspace{T}^\perp = \rangespace{T}$. If $V$ is finite-dimension, either one is ok.
+\end{definition}
+
+Be careful that orthogonal projection operator is not an orthogonal operator.
+
+
+\begin{theorem}
+    $T$ is an orthogonal projection if and only if $T^2 = T = T^*$.
+\end{theorem}
+\begin{proof}
+    $T$ is a projection, so $T^2 = T$. For $a_i \in \rangespace{T}$ and $b_i \in \nullspace{T}$, we have 
+    \begin{equation*}
+        \innerproduct{a_1 + b_1}{T(a_2 + b_2)} = \innerproduct{a_1}{a_2} = \innerproduct{T(a_1 + b_1)}{a_2 + b_2}
+    \end{equation*}
+    So $T = T^*$.
+\end{proof}
+
+If $T$ is an orthogonal projection on $W$, we may choose orthonormal basis $\set{v_k}$ of $W$ and expand it to $\beta = \set{v_i}$ of $V$. Then we have
+\begin{equation}
+    \coordinate{T}_\beta = \begin{pmatrix}
+        I_k & 0 \\
+        0 & 0
+    \end{pmatrix}
+\end{equation}
+
+So $T$ is self-adjoint.
+
+The result above could be expanded further:
+
+\begin{theorem}
+    Let $T$ be normal or self-adjoint, and with distinct eigenvalue $\set{\lambda_k}$ ($k \leq n$). Let $W_k$ be eigenspace and $T_k$ be the orthogonal projection on $W_k$. We have
+    \begin{enumerate}
+        \item $V = W_1 \oplus W_2 + ... + W_k$
+        \item $W_i^\perp = W_i^\prime$ where $W_i^\prime$ is the direct sum of all the rest eigenspace
+        \item $T_i T_j = \delta_{ij}T_i$
+        \item $\displaystyle I = \sum_{i=1}^k T_i$
+        \item $\displaystyle T = \sum_{i=1}^k \lambda_i T_i$
+    \end{enumerate}
+    
+    $\lambda_i$ is called the spectrum of $T$, $\sum_{i=1}^k T_i$ is called the resolution of the identity operator and $\sum_{i=1}^k \lambda_i T_i$ is called spectral decomposition of $T$.
+    
+    
+    Another view of the theorem is that, since $T$ is normal or self-adjoint, there is an orthonormal basis $\beta$ that contains the eigenvectors of $T$, which means $\coordinate{T}_\beta$ is
+    \begin{equation}
+        \begin{aligned}
+        \coordinate{T}_\beta = \begin{pmatrix}
+            \lambda_1 I_{m_1} & 0 & \cdots & 0 \\
+            0 & \lambda_2 I_{m_2} & \cdots & 0 \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0 & 0 & \cdots & \lambda_k I_{m_k}
+        \end{pmatrix} &= \lambda_1 \begin{pmatrix}
+        I_{m_1} & 0 \\
+        0 & 0
+    \end{pmatrix} + \lambda_2 \begin{pmatrix}
+        0 & 0 & 0\\
+        0 & I_{m_2} & 0 \\
+        0 & 0 & 0
+    \end{pmatrix} + \cdots \\
+    &= \lambda_1 \coordinate{T}_{\beta_1} + \lambda_2 \coordinate{T}_{\beta_2} + \cdots
+    \end{aligned}
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    Let $x = x_1 + x_2 + ... + x_k$ where $x_i \in W_i$. Apply $I$ and $T$ on it.
+\end{proof}
+
+
+Some conclusions are:
+\begin{theorem}
+    Let $F = C$. We have:
+    \begin{enumerate}
+        \item $T$ is normal if and only if $T^* = g(T)$ for some polynomial $g$
+        \item $T$ is unitary if and only if $T$ is normal and $\absolutevalue{\lambda_i} = 1$
+        \item $T$ is self-adjoint if and only if $T$ is normal and $\lambda \in R$
+    \end{enumerate}    
+\end{theorem}
+\begin{proof}
+    Let $T = \lambda_1 T_1 + \lambda_2 T_2 + ... + \lambda_k T_k$. Because $T_i$ are self-adjoint, we have
+    \begin{equation}
+        T^* = \conjugate{\lambda_1} T_1 + \conjugate{\lambda_2} T_2 + ... + \conjugate{\lambda_k} T_k
+    \end{equation}
+    
+    Define $g(\lambda_i) = \conjugate{\lambda_i}$, we have $g(T) = g(\lambda_1) T_1 + g(\lambda_2) T_2 + ... + g(\lambda_k) T_k = T$.
+    
+    If $T$ is normal and $\absolutevalue{\lambda_i} = 1$, we have 
+    \begin{equation*}
+        \begin{aligned}
+            TT^* &= (\lambda_1 T_1 + \lambda_2 T_2 + ... + \lambda_k T_k) (\conjugate{\lambda_1} T_1 + \conjugate{\lambda_2} T_2 + ... + \conjugate{\lambda_k} T_k) \\
+            &= \absolutevalue{\lambda_1}^2 T_1 + \absolutevalue{\lambda_2}^2 T_2 + ... + \absolutevalue{\lambda_k}^2 T_k \\
+            &= T_1 + T_2 + ... + T_k \\
+            &= I
+        \end{aligned}        
+    \end{equation*}
+    
+    If $\lambda \in R$, we have $T^* = \conjugate{\lambda_1} T_1 + \conjugate{\lambda_2} T_2 + ... + \conjugate{\lambda_k} T_k = T$.
+\end{proof}
+
+
+
+% positive definite
+\subsection{Positive Definite}
+
+\begin{definition}[Positive Definite]
+    A linear operator $T$ is positive definite if $T$ is self-adjoint and $\innerproduct{T(x)}{x} > 0$ for $x \in R^+$.
+    
+    It is called positive semidefinite if $\innerproduct{T(x)}{x} \geq 0$.
+\end{definition}
+
+
+There are many properties of positive definite:
+\begin{enumerate}
+    \item $T$ is positive definite (semidefinite) if and only if all eigenvalues are positive (nonnegative)
+    \item $T$ is positive definite (semidefinite) if and only if $A$ is positive definite (semidefinite). Here $A = \coordinate{T}_\beta $ where $\beta$ is an orthonormal basis for $V$
+    \item $T$ is positive semidefinite if and only if $A = B^*B$ for some $B$
+\end{enumerate}
+
+
+\begin{theorem}\label{tt_positive_semidefinite}
+    Let $T:V \rightarrow W$ be a linear transformation, $TT^*$ and $T^*T$ are positive semidefinite.
+\end{theorem}
 
 
 
 
+% SVD
+\subsection{Singular Value Decomposition}
+
+Previous sections examine the property of linear operator. SVD is concerned with linear transformation. So it associated two inner product spaces and two orthonormal bases. The invariants here are singular values which are non-negative, which does not happen for normal operators.
+
+\begin{definition}[Adjoint of Linear Transformation]
+    \defiref{adjoint_operator_definition} defines the adjoint of linear operator. Here is the extension.
+    
+    Let $T:V \rightarrow W$ be a linear transformation, with inner product $\innerproduct{\cdot}{\cdot}_V$ and $\innerproduct{\cdot}{\cdot}_W$. $T^*$ is called adjoint if 
+    \begin{equation}
+        \innerproduct{T(x)}{y}_W = \innerproduct{x}{T^*(y)}_V
+    \end{equation}
+\end{definition}
+
+The adjoint of linear transformation has similar property:
+\begin{enumerate}
+    \item $\innerproduct{x}{T(y)}_V = \innerproduct{T(x)}{y}_W$
+    \item If $\alpha$ and $\beta$ are orthonormal basis for $V$ and $W$, we have \begin{equation}
+        \coordinate{T^*}_\beta^\alpha = \left(\coordinate{T}_\alpha^\beta\right)^*
+    \end{equation}
+\end{enumerate}
 
 
+\begin{theorem}[SVD]
+    Let $T: V \rightarrow W$ be a linear transformation with rank $r$. We have:
+    \begin{enumerate}
+        \item Orthonormal basis $\set{v_1, v_2, ..., v_n}$ for $T^*T$
+        \item Eigenvalue $\lambda_i$ that
+                \begin{itemize}
+                    \item $\lambda_1 \geq \lambda_2 \geq ... \geq \lambda_r > 0$
+                    \item $\lambda_{r+1} = ... = \lambda_n = 0$
+                \end{itemize}
+        \item $\sigma_i = \sqrt{\lambda_i}$
+        \item Orthonormal basis $\set{w_i}$ for $W$ that $\displaystyle w_i = \frac{1}{\sigma_i} T(v_i)$ for $i \leq r$
+    \end{enumerate}
+    
+    That 
+    \begin{equation}
+        T(v_i) = \begin{cases}
+        \begin{aligned}
+            &\sigma_i w_i & \text { ,if } & 1 \leq i \leq r \\
+            & 0 & \text{ ,if } & i > r
+        \end{aligned}            
+        \end{cases}
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    \theoref{tt_positive_semidefinite} says $T^*T$ is positive semidefinite, so there exists such $\lambda_i$. For $w_i$, we have
+    \begin{equation}
+        \begin{aligned}
+            \innerproduct{w_i}{w_j}_{i,j \leq r} = \innerproduct{\frac{1}{\sigma_i} T(v_i)}{\frac{1}{\sigma_j} T(v_j)} &= \frac{1}{\sigma_i \sigma_j} \innerproduct{T(v_i)}{T(v_j)} \\
+             &= \frac{1}{\sigma_i \sigma_j} \innerproduct{T^*T(v_i)}{v_j} \\
+             &= \frac{1}{\sigma_i \sigma_j} \innerproduct{\lambda_i v_i}{v_j} \\
+             &= \frac{\sigma_i^2}{\sigma_i \sigma_j} \innerproduct{v_i}{v_j} = \delta_{ij}
+        \end{aligned}        
+    \end{equation}
+    
+    So $\set{w_i}_{i \leq r}$ are orthonormal, and we can extent it to $\set{w_m}$.
+\end{proof}
 
 
+\begin{definition}[Singular Value]
+    $\set{v_i}$ might be different because there are multiple choices of orthonormal, but $\sigma_i$ are always the same. $\sigma_i$ are called the singular value of $T$.
+\end{definition}
 
 
+The singular value of $T^*$ and $T$ are the same, with reversed $\set{v_i}$ and $\set{w_i}$.
 
 
+The eigenvalue of $TT^*$ and $T^*T$ are the same, so the order does not matter.
+
+\begin{theorem}
+    For $A_{m \times n}$ matrix with rank $r$, there are positive singular value $\sigma_1 \geq \sigma_2 \geq ... \geq \sigma_r$. Define $\Sigma$ as
+    \begin{equation}
+        \Sigma = \begin{pmatrix}
+            \sigma_1 & & & & 0 \\
+             & \sigma_2 \\
+             &  & \ddots &  \\
+             &  &  &\sigma_r \\
+            0 & & &  & 0
+        \end{pmatrix}_{m \times n}
+    \end{equation}
+    
+    There exists unitary matrix $W_{m \times m}$ and unitary matrix $V_{n \times n}$ that
+    \begin{equation}
+        A = W \Sigma V^*
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    Use SVD on $L_A$, and we have orthonormal basis $v_i$ and $w_j$. Prove $AV = W \Sigma$ by proving their columns are the same.
+\end{proof}
+
+Steps of calculating the SVD for $T:V \rightarrow W$:
+\begin{enumerate}
+    \item Find orthonormal basis $\alpha$ of $V$ and $\beta$ of $W$
+    \item Find $A = \coordinate{T}_\alpha^\beta$
+    \item Find the eigenvalue $\lambda_i$ of $A^*A$, and its corresponding eigenvectors in $F^m$
+    \item Convert from eigenvectors in $F^m$ representation into vectors $v_i$ in $V$
+    \item Calculate the $\sigma_i = \sqrt{\lambda_i}$
+    \item Calculate $\displaystyle w_i = \frac{1}{\sigma_i} T(v_i)$ for $i \leq r$
+\end{enumerate}
 
 
+\begin{theorem}[Polar Decomposition]
+    A square matrix $A$ could be expressed as 
+    \begin{equation}
+        A = WP
+    \end{equation}
+    
+    Where $W$ is unitary and $P$ is positive semidefinite. If $A$ is invertible, the representation is unique. 
+    
+    A similar representation in $C$ is that for $x \in C$, $\displaystyle x = \frac{x}{\norm{x}} \cdot \norm{x}$. The first part is unitary and the second part is positive.
+\end{theorem}
+\begin{proof}
+    $A = U\Sigma V^* = U V^* V \Sigma V^* = (U V^*) \cdot (V \Sigma V^*)$. Let $W = U V^*$ and $P = V \Sigma V^*$.
+\end{proof}
 
 
+\begin{definition}[Pseudoinverse]
+    Let $T: V \rightarrow W$ be a linear transformation, and $L: \nullspace{T}^\perp \rightarrow \rangespace{T}$. The pseudoinverse (Moore-Penrose generalized inverse) $\pseudoinverse{T}$ is defined as the unique linear transformation $\pseudoinverse{T}: W \rightarrow V$ that
+    \begin{equation}
+        \pseudoinverse{T}(y) = \begin{aligned}
+            \begin{cases}
+                \inverse{L}(y) & \text{ ,for } y \in \rangespace{T} \\
+                0 & \text{ ,for } y \in \rangespace{T}^\perp
+            \end{cases}
+        \end{aligned}
+    \end{equation}
+    
+    
+    For $A_{m \times n}$, we have $A = W \Sigma V^*$ and $\sigma_1 \geq \sigma_2 \geq ... \geq \sigma_r$. Define $\pseudoinverse{\Sigma}$ as 
+    \begin{equation}
+        \pseudoinverse{\Sigma} = \begin{aligned}
+            \begin{cases}
+                \displaystyle \frac{1}{\sigma_i} & \text{ ,if } i = j \leq r \\
+                0 & \text{ ,otherwise}
+            \end{cases}
+        \end{aligned}
+    \end{equation}
+    
+    We have $\pseudoinverse{A} = V \pseudoinverse{\Sigma} W^*$.
+\end{definition}
+\begin{proof}
+    Use the SVD. We have orthonormal basis $\set{v_i}$ for $V$ and $\set{w_i}$ for $W$. What's more,
+    \begin{itemize}
+        \item $\set{v_i, v_2, ..., v_r}$ is the basis for $\nullspace{T}^\perp$
+        \item $\set{v_{r+1}, ..., v_m}$ is the basis for $\nullspace{T}$
+        \item $\set{w_1, w_2, ..., w_r}$ is the basis for $\rangespace{T}$
+        \item $\set{w_{r+1}, ..., w_n}$ is the basis for $\rangespace{T}^\perp$
+    \end{itemize}
+    
+    $L$ is the invertible linear transformation from $\set{v_i, v_2, ..., v_r}$ to $\set{w_1, w_r, ..., w_r}$. Because $L(v_i) = \sigma_i w_i$, we have $\displaystyle \inverse{L}(w_i) = \frac{1}{\sigma_i} v_i$.
+\end{proof}
+
+If $T$ is invertible, $\pseudoinverse{T} = \inverse{T}$.
 
 
+For a system of linear equations $Ax=b$, we would like to know what is the relation between $\pseudoinverse{A}b$ and the solution.
 
+\begin{theorem}
+    Define $T:V \rightarrow W$, we have
+    \begin{enumerate}
+        \item $\pseudoinverse{T}T$ is the orthogonal projection of $V$ on $\nullspace{T}^\perp$
+        \item $T \pseudoinverse{T}$ is the orthogonal projection of $W$ on $\rangespace{T}$
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    Use the $L$ defined above. For $x \in \nullspace{T}^\perp$, $\pseudoinverse{T}T(x) = \inverse{L}L(x) = x$. For $x \in \nullspace{T}$, $\pseudoinverse{T}T(x) = \inverse{L} 0 = 0$. So $\pseudoinverse{T}T$ is an orthogonal projection.
+\end{proof}
+
+\begin{theorem}
+    For a system of linear equation $A_{m \times n}x=b$. If $z = \pseudoinverse{A}b$, then $z$ has the following property:
+    \begin{enumerate}
+        \item If $Ax=b$ has solution, $z$ is the solution with minimum norm
+        \item If $Ax=b$ has no solution, $z$ is the best approximation. For any $y$, $\norm{Az-b} \leq \norm{Ay-b}$, with equality holds if and only if $Az = Ay$. And if $Az = Ay$, we have $\norm{z} \leq \norm{y}$
+    \end{enumerate}
+\end{theorem}
 
 
 

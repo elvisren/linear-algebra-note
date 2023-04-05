@@ -14,7 +14,7 @@ A linear operator $T$ is diagonalizable if there is a basis $\beta$ of $V$ that 
 
 If a linear operator $T$ is diagonalizable, it means $T(v_i) = \lambda_i v_i$, for each $v_i \in \beta$. $v_i$ is called eigenvector and $\lambda$ is called eigenvalue.
 
-If a square matrix is diagonalizable, it is similar to a diagonal matrix. So $D = \inverse{Q} A Q$ where each column of $Q$ is a eigenvector ($Q = \coordinate{I_V}_v^e$). ($A$ is the coordinate of $L_A$ under the standard basis of $R^n$. Now the basis was changed to $Q$, so use Theorem~\ref{change_of_coordinate_formula} on Page~\pageref{change_of_coordinate_formula} to find the diagonal matrix $D$).
+If a square matrix is diagonalizable, it is similar to a diagonal matrix. So $D = \inverse{Q} A Q$ where each column of $Q$ is a eigenvector ($Q = \coordinate{I_V}_v^e$). ($A$ is the coordinate of $L_A$ under the standard basis of $R^n$. Now the basis was changed to $Q$, so use \theoref{change_of_coordinate_formula} to find the diagonal matrix $D$).
 
 
 
@@ -34,7 +34,7 @@ It is easier to calculate eigenvalue using matrix representation. If (and only i
     (linearly independent is a weak property. If $T$ is self-adjoint, eigenvectors are all orthogonal)
 \end{theorem}
 \begin{proof}
-    Assume they are not linearly independent and multiply the equation by $T - \lambda_k I$.
+    Assume they are not linearly independent and multiply the equation by $T - \lambda_k I$. Use deduction to prove.
 \end{proof}
 
 \theoref{eigenvector_sets_are_linearly_independent} shows that if $T$ has $n$ distinct eigenvalue, then $T$ must be diagonalizable.
