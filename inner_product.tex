@@ -214,14 +214,13 @@ For matrix $A_{m \times n}$, it has a nice property:
 % normal
 \subsection{Normal Operators}
 
-The purpose here is to find a special basis of $V$:
-\begin{itemize}
-    \item It has to be orthonormal
-    \item It is eigenvector of $T$
-\end{itemize}
+Diagonalizable matrix has many good properties so we like to find them. We want to find the answer to these questions:
+\begin{enumerate}
+    \item When will a matrix be diagonalizable?
+    \item Could its eigenvector be an orthonormal basis?
+\end{enumerate}
 
-
-This obviously puts requirement on both the $V$ and $T$. It turns out that the $T$ must be normal (in $C$) or self-adjoint (in $R$). So we prefer complex normal and real symmetric matrices. The operators here are complex normal or real symmetric.
+The answer is yes. It obviously puts requirement on both the $V$ and $T$. It turns out that the $T$ must be normal (in $C$) or self-adjoint (in $R$). So we prefer complex normal and real symmetric matrices. The operators here are complex normal or real symmetric.
 
 \begin{definition}[Normal]
     $T$ is normal if $TT^* = T^* T$. $A$ is normal if $AA^* = A^* A$.
@@ -278,11 +277,12 @@ Now we come the most important theorem of this section.
     So the result is a diagonal matrix and $\beta$ are all eigenvectors.
 \end{proof}
 
+\begin{theorem}
+    Normal matrix in $\complexset$ is always diagonalizable.
+\end{theorem}
+
+
 Being both orthonormal and eigenvector means there is a diagonal of eigenvalues $D$ that $D = Q^* A Q$ where $Q^* = \inverse{Q}$.
-
-
-One corollary is that a normal transformation can be diagonalized because we could find a basis  of eigenvectors.
-
 
 
 \subsection{Self-adjoint Operators}
@@ -323,9 +323,10 @@ A quick summary of important theorems:
 \begin{enumerate}
     \item If $T$ splits, there is $\beta$ that $\coordinate{T}_\beta$ is upper triangular
     \item $\beta$ could be orthonormal using Gram-Schmidt process
-    \item $\beta$ could be orthonormal and eigenvectors if $T$ is normal (in $C$)
-    \item $\beta$ could be orthonormal and eigenvectors if $T$ is self-adjoint (in $R$)
-    \item normal means diagonalizable
+    \item $\beta$ could be orthonormal and eigenvectors if $T$ is normal (in $\complexset$)
+    \item $\beta$ could be orthonormal and eigenvectors if $T$ is self-adjoint (in $\realset$)
+    \item normal means diagonalizable (in $\complexset$)
+    \item symmetric means diagonalizable (in $\realset$)
 \end{enumerate}
 
 
@@ -403,8 +404,8 @@ If $AA^* = I$, the rows of $A$ are orthonormal basis for $F^n$. Also if $A^*A = 
 \end{proof}
 
 
-\begin{definition}[Unitarily Equivalent]
-    If the matrix $A$ is complex normal or real symmetric, there is orthonormal basis of eigenvectors of $A$. These basis form a matrix $Q$ and $D = \inverse{Q} A Q$. This $Q$ is orthogonal because its columns are orthonormal basis. So $\inverse{Q} = Q^*$. Here $D$ and $A$ are called unitarily equivalent (or orthogonally equivalent). Here we did not require $A$ to be unitary or orthogonal.
+\begin{definition}[Unitarily Equivalent]    
+    If $D$ and $A$ are similar, we have $D = \inverse{Q} A Q$. If, in addition, $\inverse{Q} = Q^*$, $D$ and $A$ are called unitarily equivalent (or orthogonally equivalent). Here we did not require $A$ to be unitary or orthogonal.
 \end{definition}
 
 
@@ -594,7 +595,18 @@ The result above could be expanded further:
     \end{equation}
 \end{theorem}
 \begin{proof}
-    Let $x = x_1 + x_2 + ... + x_k$ where $x_i \in W_i$. Apply $I$ and $T$ on it.
+    Let $x = x_1 + x_2 + ... + x_k$ where $x_i \in W_i$. We have $T_i (x) = x_i$. So we have
+    \begin{equation*}
+        I(x) = T_1 (x) + T_2 (x) + ... + T_k (x)
+    \end{equation*}
+   
+    \begin{equation*}
+        \begin{aligned}
+            T(x) &= T(x_1) + T(x_2) + ... + T(x_k) \\
+            &= \lambda_1 x_1 + \lambda_2 x_2 + ... + \lambda_k x_k \\
+            &= \lambda_1 T_1 (x) + \lambda_2 T_2 (x) + ... + \lambda_k T_k (x)
+        \end{aligned}        
+    \end{equation*}
 \end{proof}
 
 
@@ -681,8 +693,9 @@ The adjoint of linear transformation has similar property:
 \begin{theorem}[SVD]
     Let $T: V \rightarrow W$ be a linear transformation with rank $r$. We have:
     \begin{enumerate}
-        \item Orthonormal basis $\set{v_1, v_2, ..., v_n}$ for $T^*T$
-        \item Eigenvalue $\lambda_i$ that
+        \item Orthonormal eigenvectors $\set{v_1, v_2, ..., v_n}$ for $T^*T$
+        \item Orthonormal eigenvectors $\set{w_1, w_2, ..., w_m}$ for $TT^*$
+        \item Eigenvalue $\lambda_i$ for $T^*T$ (or $TT^*$) that
                 \begin{itemize}
                     \item $\lambda_1 \geq \lambda_2 \geq ... \geq \lambda_r > 0$
                     \item $\lambda_{r+1} = ... = \lambda_n = 0$

@@ -20,10 +20,10 @@
 %\newtheorem{theorem}{Theorem}
 
 \usepackage{thmtools}
-\declaretheorem[thmbox=M]{theorem}
-\declaretheorem[thmbox=M]{definition}
-\declaretheorem[thmbox=M]{example}
-\declaretheorem[thmbox=M]{axiom}
+\declaretheorem{theorem}
+\declaretheorem{definition}
+\declaretheorem{example}
+\declaretheorem{axiom}
 
 
 
@@ -87,6 +87,13 @@
 
 %linear algebra
 
+
+% real set, the R
+\newcommand\realset[0]{\mathbb{R}}
+
+% complex set, the C
+\newcommand\complexset[0]{\mathbb{C}}
+
 % null space, the N
 \newcommand\nullspace[1]{\mathcal{N}(#1)}
 
@@ -96,11 +103,16 @@
 % absolute value, the |x|
 \newcommand\absolutevalue[1]{\abs{#1}}
 
+
+% absolute value text, the "abs"
+\newcommand\absolutevaluetext[1]{\mathrm{abs}~#1}
+
+
 % determinate, the same as |x|
 \newcommand\determinate[1]{\absolutevalue{#1}}
 
 % determinate text, the "det"
-\newcommand\determinatetext[1]{\displaystyle \mathrm{det} ~\displaystyle #1}
+\newcommand\determinatetext[1]{\displaystyle \mathrm{det}~\displaystyle #1}
 
 % the coordinate, the [x]
 \newcommand\coordinate[1]{\sbr{#1}}
@@ -113,27 +125,33 @@
 \newcommand\inverse[1]{ {#1}^{-1} }
 
 % dimension text, the "dim x"
-\newcommand\dimension[1]{\displaystyle \mathrm{dim}\left( #1 \right)}
+\newcommand\dimension[1]{\displaystyle \mathrm{dim}~\left( #1 \right)}
 
 % rank text, the "rank x"
-\newcommand\rank[1]{\displaystyle \mathrm{rank}\left( #1 \right)}
+\newcommand\rank[1]{\displaystyle \mathrm{rank}~\left( #1 \right)}
+
+
+% adjugate matrix, the "adj x"
+\newcommand\adjugate[1]{\displaystyle \mathrm{adj}~\left( #1 \right)}
+
+
 
 % inner product, the <x,y>
 \newcommand\innerproduct[2]{\left\langle \displaystyle #1, #2 \right\rangle}
 
 % trace, the "tr x"
-\newcommand\trace[1]{\displaystyle \mathrm{tr\ }( #1 )}
+\newcommand\trace[1]{\displaystyle \mathrm{tr}~( #1 )}
 
 % span, the "span x"
-\newcommand\spanset[1]{\displaystyle \mathrm{span}\left( #1 \right)}
+\newcommand\spanset[1]{\displaystyle \mathrm{span}~\left( #1 \right)}
 
 
 % pseudoinverse, the dagger
 \newcommand\pseudoinverse[1]{ {#1}^\dagger }
 
 
-\newcommand\adjugate[1]{\displaystyle \mathrm{adj} ~\displaystyle #1 }
-\newcommand\cofactor[1]{\displaystyle \mathrm{cof} ~\displaystyle #1 }
+%\newcommand\adjugate[1]{\displaystyle \mathrm{adj}~\displaystyle #1 }
+\newcommand\cofactor[1]{\displaystyle \mathrm{cof}~\displaystyle #1 }
 
 \newcommand\columnvector[1]{\boldsymbol{#1}}
 % \newcommand\norm[1]{\displaystyle \left\lVert #1 \right\rVert}

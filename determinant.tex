@@ -12,7 +12,7 @@ Determinant is a function from $A$ to $F$. The most used one is
 \end{equation}
 
 
-Proper definition of determinant is a little complex. Define the cofactor of the entry of $A$ in row $i$ and column $j$ as $\cofactor{A} = (-1)^{i+j} \determinate{\tilde{A}_{ij}}$, $\tilde{A}$ is a $(n-1)\times (n-1)$ matrix obtained by removing row $i$ and column $j$ of $A$. The determinant of $A$ along row $i$ is recursively defined as:
+Proper definition of determinant is a little complex. Define the cofactor of the entry of $A$ in row $i$ and column $j$ as $\cofactor{A} = (-1)^{i+j} \determinate{\tilde{A}_{ij}}$, $\tilde{A}$ is a $(n-1)\times (n-1)$ matrix obtained by removing row $i$ and column $j$ of $A$. The determinant of $A$ along row $i$ is recursively defined using Laplace Expansion:
 \begin{equation}
     \determinate{A} = \sum_{j=1}^n A_{ij} \times \cofactor{A_{ij}} = \sum_{j=1}^n (-1)^{i+j} A_{ij}  \determinate{\tilde{A}_{ij}}
 \end{equation}
@@ -23,11 +23,8 @@ Proper definition of determinant is a little complex. Define the cofactor of the
 \begin{theorem}
     The volume of $n$ vectors $\set{v_i}$ in $F^n$ is :
     \begin{equation}
-\mathbf{abs\ } {\determinate{\begin{pmatrix}
-            v_1,\\
-            v_2,\\
-            \vdots \\
-            v_n
+      \absolutevaluetext{\determinate{\begin{pmatrix}
+            v_1, v_2, ... v_n
         \end{pmatrix}}}
     \end{equation}
 \end{theorem}
@@ -54,9 +51,14 @@ Proper definition of determinant is a little complex. Define the cofactor of the
 \end{theorem}
 
 \begin{theorem}
-    If $A$ is invertible, then:
+    If $A$ is invertible, then let adjugate matrix be
     \begin{equation}
-        \inverse{A} = \frac{(\cofactor{A})^t}{\determinate{A}}
+        \adjugate{A} = (\cofactor{A})^t
+    \end{equation}
+    
+    Then we have
+    \begin{equation}
+        \inverse{A} = \frac{\adjugate{A}}{\determinate{A}}
     \end{equation}    
 \end{theorem}
 
