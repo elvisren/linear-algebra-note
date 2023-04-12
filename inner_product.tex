@@ -37,7 +37,7 @@ Be careful that inner product could be negative. So it is different from metric 
 \begin{definition}[conjugate transpose]
     The conjugate transpose (adjoint) of $A_{m \times n}$ is 
     \begin{equation}
-        A^* = \conjugate{A^t}
+        A^* = \conjugate{\transpose{A}}
     \end{equation}
 \end{definition}
 
@@ -220,7 +220,7 @@ Diagonalizable matrix has many good properties so we like to find them. We want 
     \item Could its eigenvector be an orthonormal basis?
 \end{enumerate}
 
-The answer is yes. It obviously puts requirement on both the $V$ and $T$. It turns out that the $T$ must be normal (in $C$) or self-adjoint (in $R$). So we prefer complex normal and real symmetric matrices. The operators here are complex normal or real symmetric.
+The answer is yes. It obviously puts requirement on both the $V$ and $T$. It turns out that the $T$ must be normal (in $\complexset$) or self-adjoint (in $\realset$). So we prefer complex normal and real symmetric matrices. The operators here are complex normal or real symmetric.
 
 \begin{definition}[Normal]
     $T$ is normal if $TT^* = T^* T$. $A$ is normal if $AA^* = A^* A$.
@@ -287,7 +287,7 @@ Being both orthonormal and eigenvector means there is a diagonal of eigenvalues 
 
 \subsection{Self-adjoint Operators}
 
-\theoref{normal_orthonormal_with_complex_space} did not work for $F=R$ because polynomials do not always split. So we need stronger restriction to make it split in $R$, which is self-adjoint.
+\theoref{normal_orthonormal_with_complex_space} did not work for $F=R$ because polynomials do not always split. So we need stronger restriction to make it split in $\realset$, which is self-adjoint.
 
 \begin{definition}[Hermitian, self-adjoint]
     $T$ is Hermitian (self-adjoint) if $T = T^*$. So is it for $A$.
@@ -295,7 +295,7 @@ Being both orthonormal and eigenvector means there is a diagonal of eigenvalues 
 
 If $T$ is self-adjoint, it has even better properties:
 \begin{enumerate}
-    \item Every eigenvalue of $T$ is real, regardless of $F$ is $C$ or $R$
+    \item Every eigenvalue of $T$ is real, regardless of $F$ is $\complexset$ or $\realset$
     \item If $V$ is on $F=R$, $T$ still splits
 \end{enumerate}
 \begin{proof}
@@ -304,7 +304,7 @@ If $T$ is self-adjoint, it has even better properties:
     \end{equation*}
     So $\lambda = \conjugate{\lambda}$ and $\lambda$ is real.
     
-    For second property, take $F=C$ and let $T$ splits in $C$. But all eigenvalues are real, so $T$ splits in $R$.
+    For second property, take $F=C$ and let $T$ splits in $\complexset$. But all eigenvalues are real, so $T$ splits in $\realset$.
 \end{proof}
 
 \begin{theorem}
@@ -335,7 +335,7 @@ So the conclusion is, if the matrix $A$ is complex normal or real symmetric, the
 % unitary and orthogonal operators
 \subsection{Unitary and Orthogonal Operators}
 
-Adjoint operation ($T^*$ and $T$) works pretty like conjugate in $C$. There is a special $i \in C$  that $i \conjugate{i} = 1$, so we would like to examine what happens when $TT^* = T^* T = I_n$. It turns out that these $T$ could preserve length.
+Adjoint operation ($T^*$ and $T$) works pretty like conjugate in $\complexset$. There is a special $i \in C$  that $i \conjugate{i} = 1$, so we would like to examine what happens when $TT^* = T^* T = I_n$. It turns out that these $T$ could preserve length.
 
 \begin{definition}\label{unitary}
     If $\norm{T(x)} = \norm{x}$, $T$ is called unitary if $F=C$ and orthogonal if $F=R$.
@@ -389,18 +389,18 @@ If $AA^* = I$, the rows of $A$ are orthonormal basis for $F^n$. Also if $A^*A = 
 
 
 \begin{theorem}
-    If $V$ is on $R$, it has an orthonormal basis of eigenvectors with $\absolutevalue{\lambda_i} = 1$ if and only if $T$ is both self-adjoint and orthogonal.     
+    If $V$ is on $\realset$, it has an orthonormal basis of eigenvectors with $\absolutevalue{\lambda_i} = 1$ if and only if $T$ is both self-adjoint and orthogonal.     
     
-    If $V$ is on $C$, $T$ needs to be unitary.
+    If $V$ is on $\complexset$, $T$ needs to be unitary.
     
-    In another term, if $T$ is in $C$, then $T^* = \inverse{T}$. But if $T$ is in $R$, then $T = T^* = \inverse{T}$.
+    In another term, if $T$ is in $\complexset$, then $T^* = \inverse{T}$. But if $T$ is in $\realset$, then $T = T^* = \inverse{T}$.
 \end{theorem}
 \begin{proof}
     If $V$ has orthonormal basis with eigenvectors of $T$, $T$ is self-adjoint (or normal). So $T(T^* v_i) = T (\lambda_i v_i) = \lambda_i (T v_i) = \lambda_i^2 v_i$. Because $\absolutevalue{\lambda_i} = 1$, we have $TT^* v_i = v_i$, so $TT^* = I$ and $T$ is orthogonal.
     
-    Then for the $R$ case. If $T$ is self-adjoint, there exists orthonormal basis of eigenvectors of $T$. Now if $T$ is also orthogonal, we have $\absolutevalue{\lambda_i} \norm{v_i} = \norm{\lambda_i v_i} = \norm{T (v_i)} = \norm{v_i}$, so $\absolutevalue{\lambda_i} = 1$. 
+    Then for the $\realset$ case. If $T$ is self-adjoint, there exists orthonormal basis of eigenvectors of $T$. Now if $T$ is also orthogonal, we have $\absolutevalue{\lambda_i} \norm{v_i} = \norm{\lambda_i v_i} = \norm{T (v_i)} = \norm{v_i}$, so $\absolutevalue{\lambda_i} = 1$. 
     
-    For the $C$ case, unitary means normal and we have the same proof.
+    For the $\complexset$ case, we have the same proof for $\complexset$.
 \end{proof}
 
 
@@ -412,14 +412,14 @@ If $AA^* = I$, the rows of $A$ are orthonormal basis for $F^n$. Also if $A^*A = 
 With the definition of unitarily equivalent, the necessary and sufficient condition of being normal could be rephrased:
 
 \begin{theorem}
-    Let $A$ in $C$. $A$ is normal if and only if $A$ is unitarily equivalent to a diagonal matrix. If $A$ is in $R$, then the condition is orthogonally equivalent.
+    Let $A$ in $\complexset$. $A$ is normal if and only if $A$ is unitarily equivalent to a diagonal matrix. If $A$ is in $\realset$, then the condition is orthogonally equivalent.
 \end{theorem}
 
 The relationship among normal, unitary, unitarily equivalent are complex:
 \begin{enumerate}
     \item If $A$ is normal, there is diagonal $D$ that $D = \inverse{Q} A Q$. $Q$ here is unitary
     \item If $A$ is normal and unitary, (unitary means normal), there is still such $D$ and $Q$, with $\absolutevalue{\lambda_i} = 1$
-    \item If $D = Q^* A Q$ and $Q$ is unitary, $A$ and $D$ are unitarily equivalent
+    \item If $D = Q^* A Q$ and $Q$ is unitary, $A$ and $D$ are unitarily equivalent9
 \end{enumerate}
 
 So the unitary is sometimes on $A$ and sometimes on $Q$.
@@ -470,7 +470,7 @@ If $f$ is an orthogonal operator, then $\norm{f(x-y)} = \norm{x-y}$, so $f$ is a
     Let $f$ be a rigid motion. Then there exists a unique orthogonal operator $T$ and a unique translation $g$ that $f = g  \circ T$.
 \end{theorem}
 \begin{proof}
-    Define $T(x) = f(x) - f(0)$ and $g(x) = x + f(0)$. Then $\norm{T(x)} = \norm{f(x) - f(0)} = \norm{x - 0} = \norm{x}$. Replace $x$ by $x-y$, we have $\innerproduct{T(x)}{T(y)} = \innerproduct{x}{y}$.
+    Define $T(x) = f(x) - f(0)$ and $g(x) = x + f(0)$. Then $\norm{T(x)} = \norm{f(x) - f(0)} = \norm{x - 0} = \norm{x}$.
     
     The next step is to prove $T$ is a linear transformation. Prove it by proving 
     \begin{equation*}
@@ -521,6 +521,14 @@ $P$ may not be the final result because it is possible that $\determinate{P} = -
 The end result is that a quadratic form could be simplified by a rotation.
 \end{example}
 
+\begin{example}
+    If $A$ is an self-adjoint matrix, there is an orthogonal matrix $P$ that $\transpose{P} A P = \Sigma$. So $A = P \Sigma \transpose{P}$. Therefore the effect of $A \times B$ is to
+    \begin{enumerate}
+        \item Rotate $B$ by $\inverse{T}$
+        \item Scale $B$ by $\Sigma$
+        \item Rotate $B$ back by $P$
+    \end{enumerate}
+\end{example}
 
 
 
@@ -656,12 +664,18 @@ There are many properties of positive definite:
 \begin{enumerate}
     \item $T$ is positive definite (semidefinite) if and only if all eigenvalues are positive (nonnegative)
     \item $T$ is positive definite (semidefinite) if and only if $A$ is positive definite (semidefinite). Here $A = \coordinate{T}_\beta $ where $\beta$ is an orthonormal basis for $V$
-    \item $T$ is positive semidefinite if and only if $A = B^*B$ for some $B$
+    \item $T$ is positive semidefinite if and only if $T = B^*B$ for some $B$
 \end{enumerate}
+\begin{proof}
+    Since $T$ is self-adjoin, there is orthonormal matrix $P$ that $\transpose{P} T P = \Sigma$. So
+    \begin{equation*}
+        \transpose{x} T x = \transpose{x} P \Sigma \transpose{P} x = \transpose{y} \Sigma y = \sum_i \lambda_i y_i^2
+    \end{equation*}
+\end{proof}
 
 
 \begin{theorem}\label{tt_positive_semidefinite}
-    Let $T:V \rightarrow W$ be a linear transformation, $TT^*$ and $T^*T$ are positive semidefinite.
+    Let $T:V \rightarrow W$ be a linear transformation, The Gram matrix $TT^*$ and $T^*T$ are positive semidefinite.
 \end{theorem}
 
 
@@ -677,13 +691,13 @@ Previous sections examine the property of linear operator. SVD is concerned with
     
     Let $T:V \rightarrow W$ be a linear transformation, with inner product $\innerproduct{\cdot}{\cdot}_V$ and $\innerproduct{\cdot}{\cdot}_W$. $T^*$ is called adjoint if 
     \begin{equation}
-        \innerproduct{T(x)}{y}_W = \innerproduct{x}{T^*(y)}_V
+        \innerproduct{x}{T^*(y)}_V = \innerproduct{T(x)}{y}_W
     \end{equation}
 \end{definition}
 
 The adjoint of linear transformation has similar property:
 \begin{enumerate}
-    \item $\innerproduct{x}{T(y)}_V = \innerproduct{T(x)}{y}_W$
+    \item $\innerproduct{x}{T(y)}_V = \innerproduct{T(x)}{y}_W$ (definition is $T^*$, here is $T$)
     \item If $\alpha$ and $\beta$ are orthonormal basis for $V$ and $W$, we have \begin{equation}
         \coordinate{T^*}_\beta^\alpha = \left(\coordinate{T}_\alpha^\beta\right)^*
     \end{equation}
@@ -691,7 +705,7 @@ The adjoint of linear transformation has similar property:
 
 
 \begin{theorem}[SVD]
-    Let $T: V \rightarrow W$ be a linear transformation with rank $r$. We have:
+    Let $T: V \rightarrow W$ be a linear transformation with rank $\realset$. We have:
     \begin{enumerate}
         \item Orthonormal eigenvectors $\set{v_1, v_2, ..., v_n}$ for $T^*T$
         \item Orthonormal eigenvectors $\set{w_1, w_2, ..., w_m}$ for $TT^*$
@@ -708,8 +722,8 @@ The adjoint of linear transformation has similar property:
     \begin{equation}
         T(v_i) = \begin{cases}
         \begin{aligned}
-            &\sigma_i w_i & \text { ,if } & 1 \leq i \leq r \\
-            & 0 & \text{ ,if } & i > r
+            &\sigma_i w_i & \text { , if } & 1 \leq i \leq r \\
+            & 0 & \text{ , if } & i > r
         \end{aligned}            
         \end{cases}
     \end{equation}
@@ -725,7 +739,7 @@ The adjoint of linear transformation has similar property:
         \end{aligned}        
     \end{equation}
     
-    So $\set{w_i}_{i \leq r}$ are orthonormal, and we can extent it to $\set{w_m}$.
+    So $\set{w_i}_{i \leq r}$ are orthonormal (prove the orthonormal property of $w_i$), and we can extent it to $\set{w_m}$.
 \end{proof}
 
 
@@ -770,20 +784,9 @@ Steps of calculating the SVD for $T:V \rightarrow W$:
     \item Calculate $\displaystyle w_i = \frac{1}{\sigma_i} T(v_i)$ for $i \leq r$
 \end{enumerate}
 
-
-\begin{theorem}[Polar Decomposition]
-    A square matrix $A$ could be expressed as 
-    \begin{equation}
-        A = WP
-    \end{equation}
-    
-    Where $W$ is unitary and $P$ is positive semidefinite. If $A$ is invertible, the representation is unique. 
-    
-    A similar representation in $C$ is that for $x \in C$, $\displaystyle x = \frac{x}{\norm{x}} \cdot \norm{x}$. The first part is unitary and the second part is positive.
+\begin{theorem}
+    If $A$ is real symmetric and positive definite, then its singular values are the same as eigenvalue, and the left and right singular vectors are the eigenvectors.    
 \end{theorem}
-\begin{proof}
-    $A = U\Sigma V^* = U V^* V \Sigma V^* = (U V^*) \cdot (V \Sigma V^*)$. Let $W = U V^*$ and $P = V \Sigma V^*$.
-\end{proof}
 
 
 \begin{definition}[Pseudoinverse]
@@ -845,6 +848,88 @@ For a system of linear equations $Ax=b$, we would like to know what is the relat
         \item If $Ax=b$ has no solution, $z$ is the best approximation. For any $y$, $\norm{Az-b} \leq \norm{Ay-b}$, with equality holds if and only if $Az = Ay$. And if $Az = Ay$, we have $\norm{z} \leq \norm{y}$
     \end{enumerate}
 \end{theorem}
+
+\begin{theorem}
+    $\pseudoinverse{A}$ is the unique matrix that satisfies the following 4 properties:
+    \begin{enumerate}
+        \item $A \pseudoinverse{A}A = A$
+        \item $\pseudoinverse{A}A\pseudoinverse{A} = \pseudoinverse{A}$
+        \item $\transpose{(A \pseudoinverse{A})} = A \pseudoinverse{A}$
+        \item $\transpose{(\pseudoinverse{A}A)} = \pseudoinverse{A}A$
+    \end{enumerate}
+\end{theorem}
+
+
+
+\subsection{Matrix Decomposition}
+
+
+
+\begin{theorem}[Polar Decomposition]
+    A square matrix $A$ could be expressed as 
+    \begin{equation}
+        A = WP
+    \end{equation}
+    
+    Where $W$ is unitary and $P$ is positive semidefinite. If $A$ is invertible, the representation is unique. 
+    
+    A similar representation in $\complexset$ is that for $x \in C$, $\displaystyle x = \frac{x}{\norm{x}} \cdot \norm{x}$. The first part is unitary and the second part is positive.
+\end{theorem}
+\begin{proof}
+    $A = U\Sigma V^* = U V^* V \Sigma V^* = (U V^*) \cdot (V \Sigma V^*)$. Let $W = U V^*$ and $P = V \Sigma V^*$.
+\end{proof}
+
+
+\begin{theorem}[LU Decomposition]
+    For square matrix $A$, it could be composed into two factors: a lower triangular matrix $L$ and an upper triangular matrix $U$ that
+    \begin{equation}
+        A = LU
+    \end{equation}
+    
+    Here $L$ stands for lower, and $U$ stands for upper.
+    
+    We could find $L$ and $U$ using the Gaussian elimination.
+    
+    Sometimes we need to permutate the rows of $A$ so the leading value is nonzero. So we need to multiply a permutation matrix $P$ to $A$ to have $PA = LU$. This is called partial pivoting. If we permutate the columns as well, it is called full pivoting $PAQ = LU$.
+\end{theorem}
+
+\begin{theorem}[QR Decomposition]
+    For square matrix $A$ with rank $n$, it could be composed into two factors: an orthogonal matrix $Q$ and an upper triangular matrix $R$ that 
+    \begin{equation}
+        A = QR
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    Assume $A=[a_1, a_2, ..., a_n]$. Use the Gram-Schmidt process to calculate orthonormal vector $\set{e_i}$, we have
+    \begin{equation*}
+        \begin{aligned}
+            a_1 &= \innerproduct{e_1}{a_1}a_1 \\
+            a_2 &= \innerproduct{e_1}{a_2} a_2 + \innerproduct{e_2}{a_2} a_2\\
+            &\vdots \\
+            a_n &= \sum_i \innerproduct{e_i}{a_n} a_n
+        \end{aligned}
+    \end{equation*}
+    So $Q=[e_1, e_2, ..., e_n]$, and $R_{ij} = \innerproduct{e_j}{a_j}$.
+\end{proof}
+
+\begin{theorem}[Cholesky Decomposition]
+    For a self-adjoint positive semidefinite matrix $A$, it could be decomposed into 
+    \begin{equation}
+        A = L L^*
+    \end{equation}
+    
+    where $L$ is a lower triangular matrix.
+    
+    Cholesky decomposition is roughly twice as efficient as LU decomposition.
+\end{theorem}
+\begin{proof}
+    We do the Gram-Schmidt process on both rows and columns of $A$. So 
+    \begin{equation}
+        \Sigma = \transpose{\sqrt{\Sigma}} \sqrt{\Sigma} = L_i ... L_2 L_1 A \transpose{L_1} \transpose{L_2} ... \transpose{L_i}
+    \end{equation}
+    
+    So $L = \transpose{\left(\sqrt{\Sigma}L_i ... L_2 L_1\right)}$.
+\end{proof}
 
 
 

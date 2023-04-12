@@ -152,10 +152,26 @@ The test for diagonalizability now requires $\dimension{E_\lambda} = m$ for each
 \end{theorem}
 
 \begin{theorem}
-    $A$ is invertible $\Leftrightarrow$ $0$ is not an eigenvalue.    
+    The rank of $A$ is the number of nonzero $\lambda_i$. So $A$ is invertible if and only if $0$ is not an eigenvalue.    
+\end{theorem}
+
+\begin{theorem}
+    The eigenvalues of $\inverse{T}$ are $\displaystyle \set{\frac{1}{\lambda_i}}$.
 \end{theorem}
 
 
+\begin{theorem}
+    Let $\lambda_i$ be the eigenvalue of $A$ (with duplication), we have:
+    \begin{equation}
+        \trace{A} = \sum_i \lambda_i
+    \end{equation}
+    \begin{equation}
+        \absolutevalue{A} = \prod_i \lambda_i
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    The characteristic function of $A$ is $\absolutevalue{A - \lambda I} = 0$. Calculate what's before $\lambda$. Also take $\lambda=0$ and we have the proof for the second one.
+\end{proof}
 
 
 

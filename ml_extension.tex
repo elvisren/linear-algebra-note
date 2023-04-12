@@ -1,0 +1,148 @@
+\section{Machine Learning Extension}
+
+
+The standard basis $\set{e_i}$ for $\realset^n$ is called one-hot vector.
+
+$A_{i,:}$ select the $i$th column, and $A_{:,j}$ select the $j$th row.
+
+A tensor is a $n$-dimension array. The $n$ is called order or rank.
+
+
+\begin{definition}[Hadamard Product]
+    The Hadamard product of $A_{m \times n}$ and $B_{m\times n}$ is defined as $(A \odot B)_{ij} = A_{ij} \cdot B_{ij}$.
+\end{definition}
+
+\subsection{Norm}
+
+\begin{definition}[Norm]
+    The norm is a function $f : R^n \rightarrow R$ that:
+    \begin{itemize}
+        \item $f(x) \geq 0$
+        \item $f(x) = 0$ if and only if $x = 0$
+        \item $f(tx) = t f(x)$
+        \item $f(x+y) \leq f(x) + f(y)$
+    \end{itemize}
+\end{definition}
+
+\begin{definition}
+    The norms of a vector $x$ are:
+\begin{itemize}
+    \item p-norm: $\displaystyle \norm{x}_p = (\sum_{i=1}^n \absolutevalue{x_i}^p)^{\frac{1}{p}}$
+    \item 2-norm: $\displaystyle \norm{x}_{p=2} = \transpose{x} x$
+    \item 1-norm: $\displaystyle \norm{x}_1 = \sum_{i=1}^n \absolutevalue{x_i}$
+    \item 0-norm: $\displaystyle \norm{x}_0 = \sum_{i=1}^n x^0$, if we define $0^0 = 0$.
+    \item max-norm: $\norm{x}_\infty = \max \set{\absolutevalue{x_i}}$
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Induced Norm]
+   For a matrix $A_{m \times n}$, its induced norm is
+\begin{equation}
+    \norm{A}_p = \max\limits_{\norm{x}=1} \norm{Ax}_p
+\end{equation}
+
+If $p=2$, $\norm{A}_2 = \sqrt{\lambda_{\mathrm{max}} ( \transpose{A}A}) = \max\limits_i \sigma_i$, where $\sigma_i$ is the $i$th singnular value.
+ 
+\end{definition}
+
+\begin{definition}[Trace Norm]
+    The trace norm, also called nuclear norm, is defined as
+\begin{equation}
+    \norm{A}_* = \trace{\sqrt{\transpose{A}A}} = \sum_i \sigma_i = \norm{\sigma}_1
+\end{equation}
+\end{definition}
+
+\begin{definition}[Forbenius Norm]
+    \begin{equation}
+        \norm{A}_F = \sqrt{\sum_i \sum_j A_{ij}^2} = \sqrt{\trace{\transpose{A}A}}
+    \end{equation}
+\end{definition}
+
+
+\subsection{Properties}
+
+\begin{theorem}[Cyclic Permutation Property]
+    For $A$,$B$,$C$, if the result of $ABC$ is a square matrix, then
+    \begin{equation}
+        \trace{ABC} = \trace{BCA} = \trace{CAB}
+    \end{equation}
+    
+    One of the result is that for vector $x$, we have
+    \begin{equation}
+        \transpose{x} A x = \trace{\transpose{x}Ax} = \trace{x \transpose{x} A}
+    \end{equation}
+\end{theorem}
+
+\begin{theorem}
+    For $A_{m \times n}$, we have
+    \begin{equation}
+        \rank{A} = \rank{\transpose{A}} = \rank{\transpose{A}A} = \rank{A \transpose{A}}
+    \end{equation}    
+\end{theorem}
+
+
+\begin{theorem}
+    The cosine of the angle between $x$ and $y$ is
+    \begin{equation}
+        \cos(x,y) = \frac{\transpose{x}y}{\norm{x} \norm{y}}
+    \end{equation}
+    
+    If we apply orthogonal transformation on $x$ and $y$, the angle will not change.
+\end{theorem}
+\begin{proof}
+    For orthogonal transformation $T$, $\displaystyle \cos(Tx, Ty) = \frac{\transpose{(Tx)} Ty}{\norm{Tx} \norm{Ty}} = \cos(x,y)$. So orthogonal transformation preserve both the angle and norm, and it is either rotation or reflection.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
