@@ -94,27 +94,134 @@ If $p=2$, $\norm{A}_2 = \sqrt{\lambda_{\mathrm{max}} ( \transpose{A}A}) = \max\l
 \end{proof}
 
 
+\subsection{Matrix Calculus}
+
+\begin{definition}[Gradient]
+    For $f: \realset^n \rightarrow \realset$, the derivative against $x$ is called gradient:
+    \begin{equation}
+    G_f (x) = \nabla f_{n \rightarrow 1} (x) = \begin{pmatrix}
+        \pd{f}{x_1} \\
+        \vdots \\
+        \pd{f}{x_n}
+    \end{pmatrix}
+    \end{equation}
+    
+    To be consistent with Jacobian matrix, it is preferred that
+    \begin{equation}
+        \nabla f (x) = \begin{pmatrix}
+            \pd{f}{x_1}, \hdots, \pd{f}{x_n}
+        \end{pmatrix}
+    \end{equation}
+    
+    So $\nabla f: \realset^n \rightarrow \realset^n$ is a vector field.
+\end{definition}
+
+
+
+\begin{example}    
+For directional derivative of $f$ along a vector $v$, we have 
+\begin{equation}
+    D_v f(x) = \lim\limits_{h \rightarrow 0} \frac{f(x + hv) - f(x)}{h}
+\end{equation}
+
+We have $D_v f(x) = \nabla f(x) \cdot v$.
+\end{example}
+
+\begin{definition}[Jacobian Matrix]
+    For $f: \realset^n \rightarrow \realset^m$, the derivative against $x$ is called Jacobian matrix:
+    \begin{equation}
+        J_{f_{n \rightarrow m}} (x) = \begin{pmatrix}
+            \nabla f_1 \\
+            \nabla f_2 \\
+            \vdots \\
+            \nabla f_m
+        \end{pmatrix}_{m \times n}
+    \end{equation}
+    
+%    So $J_f$ is a matrix that transform from $\realset^n$ to $\realset^m$, so it is an $m \times n$ matrix.
+\end{definition}
+
+
+\begin{definition}[Hessian Matrix]
+    For $f: \realset^n \rightarrow \realset$, the second partial derivatives is
+    \begin{equation}
+        H_f = \nabla^2 f = \begin{pmatrix}
+            \pd[2]{f}{x_1} & \hdots & \md{f}{2}{x_1}{1}{x_n}{1} \\
+            & \vdots \\
+            \md{f}{2}{x_n}{1}{x_1}{1} & \hdots & \pd[2]{f}{x_n}
+        \end{pmatrix}
+    \end{equation}
+    
+    So Hessian matrix is the Jacobian of the gradient.
+\end{definition}
+
+
+
+
+
+\begin{definition}[Chain Rule]
+    Let $h(x) = g \circ f (x)$, we have
+    \begin{equation}
+        J_h = J_g \times J_f
+    \end{equation}
+\end{definition}
+
+
+
+\begin{example}
+    Useful result for $f:\realset^n \rightarrow \realset$:
+    \begin{equation}
+        \pd{\transpose{a}x}{x} = a
+    \end{equation}   
+    \begin{equation}
+        \pd{\transpose{b}Ax}{x} = \transpose{A}b
+    \end{equation}
+    \begin{equation}
+        \pd{\transpose{x}Ax}{x} = (A + \transpose{A}) x
+    \end{equation}
+\end{example}
+
+\begin{definition}
+    If $x$ is not a vector but a matrix and $f: \realset^{m \times n} \rightarrow \realset$, we define
+    \begin{equation}
+        \pd{f}{X} = \begin{pmatrix}
+            \pd{f}{x_{1,1}} & \hdots & \pd{f}{x_{1,n}} \\
+            & \vdots \\
+            \pd{f}{x_{m,1}} & \hdots & \pd{f}{x_{m,n}}
+        \end{pmatrix}
+    \end{equation}
+\end{definition}
+
+\begin{example}
+    Useful result for    $f: \realset^{m \times n} \rightarrow \realset$:
+    \begin{equation}
+        \pd{\transpose{a}X b}{X} = a \transpose{b}
+    \end{equation} 
+    \begin{equation}
+        \pd{\transpose{a} \transpose{X} b}{X} = b \transpose{a}
+    \end{equation}
+\end{example}
 
 
 
 
 
 
+A short summary:
+\begin{itemize}
+    \item For $f:\realset^n \rightarrow \realset$, we have $\nabla f$, $H_f$
+    \item For $f:\realset^n \rightarrow \realset^m$, we only have $\nabla f$. We do not have matrix representation of $H_f$
+    \item For $f: \realset^{m \times n} \rightarrow \realset$, we have another form of partial derivatives
+    \item The derivative is the transpose:
+        \begin{itemize}
+            \item $\transpose{a}x \rightarrow a$
+            \item $\transpose{b}A x \rightarrow \transpose{A}b$
+            \item $\transpose{x}A x \rightarrow (A + \transpose{A}) x$
+            \item $\transpose{a} X b \rightarrow a \transpose{b}$
+            \item $\transpose{a} \transpose{X} b \rightarrow b \transpose{a}$    
+        \end{itemize}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\end{itemize}
 
 
 

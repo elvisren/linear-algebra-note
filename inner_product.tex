@@ -923,7 +923,7 @@ For a system of linear equations $Ax=b$, we would like to know what is the relat
     Cholesky decomposition is roughly twice as efficient as LU decomposition.
 \end{theorem}
 \begin{proof}
-    We do the Gram-Schmidt process on both rows and columns of $A$. So 
+    We do the Gaussian elimination on both rows and columns of $A$. So 
     \begin{equation}
         \Sigma = \transpose{\sqrt{\Sigma}} \sqrt{\Sigma} = L_i ... L_2 L_1 A \transpose{L_1} \transpose{L_2} ... \transpose{L_i}
     \end{equation}
