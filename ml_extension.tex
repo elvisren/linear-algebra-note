@@ -104,7 +104,7 @@ There are two conventions in display derivative result:
 
 We will choose the numerator layout convention.
 
-\begin{table}[ht]
+\begin{table}[H]
 \centering
 \renewcommand*{\arraystretch}{1}
 \begin{tabular}[t]{c|c|c|c}
@@ -202,14 +202,14 @@ We have $D_v f(x) = \nabla f(x) \cdot v$.
 
 Here is the summary of useful matrix calculus:
 
-\begin{table}[ht]
+\begin{table}[H]
 \centering
 \renewcommand*{\arraystretch}{2.5}
 \begin{tabular}[t]{|c|c|c|c|}
 \hline
 Expression & Result & Expression & Result \\ \hline
 $\dpd{{x}}{{x}}$ & $I_n$ & $\dpd{A {x}}{{x}}$ & $A$\\[1ex] \hline
-$\dpd{\transpose{{x}}A}{{x}}$ & $\transpose{A}$ & $\dpd{\transpose{b}A {x}}{{x}}$ & $\transpose{b}a$ \\[1ex]  \hline
+$\dpd{\transpose{{x}}A}{{x}}$ & $\transpose{A}$ & $\dpd{\transpose{b}A {x}}{{x}}$ & $\transpose{b}A$ \\[1ex]  \hline
 $\dpd{\transpose{{x}}A {x}}{{x}}$ & $ \transpose{{x}}(A + \transpose{A})$ & $\dpd{x \cdot x}{{x}}$ & $ 2\transpose{{x}}$ \\[1ex]  \hline
 $\dmd{{\transpose{{x}}A {x}}}{2}{{x}}{}{{\transpose{{x}}}}{}$ & $2A$ & $\dmd{f}{2}{{x}}{}{{\transpose{{x}}}}{}$ & $\transpose{H}$  \\[1ex]  \hline
 $\dpd{\transpose{a}x}{x}$ & $\transpose{a}$ & $\dpd{\transpose{x}a}{x}$ & $\transpose{a}$  \\[1ex]  \hline

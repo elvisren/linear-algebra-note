@@ -14,7 +14,7 @@ A linear operator $T$ is diagonalizable if there is a basis $\beta$ of $V$ that 
 
 If a linear operator $T$ is diagonalizable, it means $T(v_i) = \lambda_i v_i$, for each $v_i \in \beta$. $v_i$ is called eigenvector and $\lambda$ is called eigenvalue.
 
-If a square matrix is diagonalizable, it is similar to a diagonal matrix. So $D = \inverse{Q} A Q$ where each column of $Q$ is a eigenvector ($Q = \coordinate{I_V}_v^e$). ($A$ is the coordinate of $L_A$ under the standard basis of $R^n$. Now the basis was changed to $Q$, so use \theoref{change_of_coordinate_formula} to find the diagonal matrix $D$).
+If a square matrix is diagonalizable, it is similar to a diagonal matrix. So $D = \inverse{Q} A Q$ where each column of $Q$ is a eigenvector ($Q = \coordinate{I_V}_v^e$). ($A$ is the coordinate of $L_A$ under the standard basis of $\realset^n$. Now the basis was changed to $Q$, so use \theoref{change_of_coordinate_formula} to find the diagonal matrix $D$).
 
 
 
@@ -45,7 +45,7 @@ It is easier to calculate eigenvalue using matrix representation. If (and only i
         f(t) = c (t - a_1)^{k_1} (t - a_2)^{k_2} \hdots (t - a_j)^{k_j}
     \end{equation}
     
-    The $F$ could be $R$ or $C$. A function over $C$ could always split. So we have to be careful when talking about the split over $F$.
+    The $F$ could be $\realset$ or $\complexset$. A function over $\complexset$ could always split. So we have to be careful when talking about the split over $F$.
     
     $k_j$ is called the multiplicity of $a_j$.
 \end{definition}
@@ -111,7 +111,7 @@ The test for diagonalizability now requires $\dimension{E_\lambda} = m$ for each
         \end{pmatrix}
     \end{equation*}
     
-    $C$ is a $(n-1) \times (n-1)$ matrix and it splits (similar matrix has the same characteristic polynomial). So by induction there is $Q$ that $U= \inverse{Q} C Q$ is an upper diagonal matrix. Define $R$ as:
+    $C$ is a $(n-1) \times (n-1)$ matrix and it splits (similar matrix has the same characteristic polynomial). So by induction there is $Q$ that $U= \inverse{Q} C Q$ is an upper diagonal matrix. Define $\realset$ as:
     \begin{equation*}
         R = \begin{pmatrix}
             1 & 0 \\

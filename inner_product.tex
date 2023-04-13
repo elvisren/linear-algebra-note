@@ -41,15 +41,20 @@ Be careful that inner product could be negative. So it is different from metric 
     \end{equation}
 \end{definition}
 
-Here are the common inner products:
+\begin{example}
+    Here are the common inner products:
 \begin{itemize}
     \item For $x,y \in F^n$, $\displaystyle \innerproduct{x}{y} = \sum_{i=1}^n x_i \conjugate{y_i}$
     \item For $A,B \in M_{n \times n}$, $\innerproduct{A}{B} = \trace{B^* A}$
     \item For $f,g$, $\displaystyle \innerproduct{f}{g} = \frac{1}{2 \pi} \int_{0}^{2\pi} f(x) \conjugate{g(x)} \dif x$ (inner product space $H$)
 \end{itemize}
+\end{example}
 
 
-The norm or length is defined as $\norm{x} = \sqrt{\innerproduct{x}{x}}$
+\begin{definition}[Norm]
+    The norm or length is defined as $\norm{x} = \sqrt{\innerproduct{x}{x}}$    
+\end{definition}
+
 
 There are several famous equations:
 \begin{itemize}
@@ -62,9 +67,9 @@ There are several famous equations:
     The proof relies on $\norm{x} \geq 0$.
 \end{proof}
 
-
-If $x \perp y$, we have $\norm{x+y}^2 = \norm{x}^2 + \norm{y}^2$
-
+\begin{theorem}
+    If $x \perp y$, we have $\norm{x+y}^2 = \norm{x}^2 + \norm{y}^2$    
+\end{theorem}
 
 \begin{definition}
     For a inner product space $V$:
@@ -228,13 +233,15 @@ The answer is yes. It obviously puts requirement on both the $V$ and $T$. It tur
 
 A common mistake is to think that $T$ is normal if and only if $\coordinate{T}_\beta$ is normal. $\beta$ must be orthonormal according to \theoref{operator_conjugate_transpose_requirement}.
 
-$T$ will have many nice properties if it is normal:
+\begin{theorem}
+    $T$ will have many nice properties if it is normal:
 \begin{itemize}
     \item $\norm{T(x)} = \norm{T^* (x)}$
     \item $T - cI$ is normal
     \item If $(T - \lambda I)x = 0$, then $(T^* - \conjugate{\lambda}I)x = 0$. So $T$ and $T^*$ share the same eigenvector but the eigenvalues are conjugate
     \item If $a$ and $b$ are eigenvector for eigenvalue $\lambda_1$ and $\lambda_2$, then $a \perp b$
 \end{itemize}
+\end{theorem}
 \begin{proof}
     \begin{equation*}
         \norm{T(x)}^2 = \innerproduct{T(x)}{T(x)} = \innerproduct{T^*T(x)}{x} = \innerproduct{TT^*(x)}{x} = \innerproduct{T^*(x)}{T^*(x)} = \norm{T^*(x)}^2
@@ -320,14 +327,14 @@ If $T$ is self-adjoint, it has even better properties:
 \end{proof}
 
 A quick summary of important theorems:
-\begin{enumerate}
+\begin{itemize}
     \item If $T$ splits, there is $\beta$ that $\coordinate{T}_\beta$ is upper triangular
     \item $\beta$ could be orthonormal using Gram-Schmidt process
     \item $\beta$ could be orthonormal and eigenvectors if $T$ is normal (in $\complexset$)
     \item $\beta$ could be orthonormal and eigenvectors if $T$ is self-adjoint (in $\realset$)
     \item normal means diagonalizable (in $\complexset$)
     \item symmetric means diagonalizable (in $\realset$)
-\end{enumerate}
+\end{itemize}
 
 
 So the conclusion is, if the matrix $A$ is complex normal or real symmetric, there is orthonormal basis of eigenvectors of $A$.
@@ -866,12 +873,18 @@ For a system of linear equations $Ax=b$, we would like to know what is the relat
 \section{Matrix Decomposition}
 
 The list of famous decomposition:
-\begin{itemize}
-    \item Polar: unitary + positive semidefinite
-    \item QR: orthogonal + upper triangular (need rank $n$)
-    \item LU: lower triangular + upper triangular
-    \item Cholesky: lower triangular (need self-adjoint + positive semidefinite)
-\end{itemize}
+
+\begin{table}[H]
+\centering
+\begin{tabular}[t]{|c|c|c|}
+\hline
+Name & Result & Requirement \\ \hline
+Polar & unitary + positive semidefinite & \\ \hline
+QR & orthogonal + upper triangular & rank $n$ \\ \hline
+LU & lower triangular + upper triangular & \\ \hline
+Cholesky & lower triangular & self-adjoint + positive semidefinite \\ \hline
+\end{tabular}
+\end{table}
 
 \begin{theorem}[Polar Decomposition]
     A square matrix $A$ could be expressed as 
