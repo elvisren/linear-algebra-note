@@ -1,6 +1,6 @@
 
 % linear transformation
-\section{Linear Transformation}
+\chapter{Linear Transformation}
 
 The logic of this section:
 \begin{enumerate}
@@ -14,7 +14,7 @@ The logic of this section:
     \item Define change-of-coordinate matrix
 \end{enumerate}
 
-\subsection{Definition}
+\section{Definition}
 A function $T:V \rightarrow W$ is a linear transformation if $T(cx + y) = cT(x) + T(y)$. There are few basic terms for linear transformation:
 \begin{itemize}
     \item $I_V$: identity transformation that $I_V (x) = x$
@@ -35,7 +35,7 @@ If $V = W$, $T$ is called linear operator. Linear operator is the focus of inner
 
 
 
-\subsubsection{Coordinates}
+\section{Coordinates}
 
 We define the coordinate of a vector and a linear transformation. Let $\beta = \set{u_i}$ be an ordered basis. If $x = \sum_{i=1}^n a_i u_i$, we define the coordinate of $x$ relative to $\beta$ as :
 \begin{equation}
@@ -60,7 +60,7 @@ For linear transformation $T$ from $\beta = \set{v_i} $ to $\gamma = \set{w_j}$,
 
 
 % matrix multiplication
-\subsection{Matrix Multiplication}
+\section{Matrix Multiplication}
 
 Linear transformation is linear in $+$ and $\times$ operations. So we could define the product of two linear transformations $UT$. It turns out to be the standard matrix multiplication. And we have
 
@@ -92,7 +92,7 @@ One property of trace is that for $A_{m \times n}$ and $B_{n \times m}$, we have
 \end{equation}
 
 % inverse
-\subsection{Inverse}
+\section{Inverse}
 The inverse $\inverse{T}$ of a linear transformation $T:V \rightarrow W$ requires that both $T \inverse{T} = I_W$ and $\inverse{T} T = I_V$. It requires that $\dimension{V} = \dimension{W}$. We have
 \begin{equation}
     \coordinate{\inverse{T}}_{\gamma}^{\beta} = \inverse{\left( \coordinate{T}_{\beta}^{\gamma} \right)}
@@ -105,7 +105,7 @@ Matrix $A$ and $B$ are similar if there is a $Q$ that $A = \inverse{Q} B Q$.
 
 
 % change of coordinates
-\subsection{Change of Coordinates}
+\section{Change of Coordinates}
 
 If we change the basis of a vector space, we may change the coordinate of vector and linear operatos.
 
@@ -125,7 +125,7 @@ A simpler version happens with $L_A$ and standard basis over $F^n$. For any non-
 
 
 % example
-\subsection{Linear Transformation Example}
+\section{Linear Transformation Example}
 
 \begin{example}
     The formula of the reflection about the line $y=tx$. It is a linear transformation $T$ with coordinates under standard basis $\beta$:

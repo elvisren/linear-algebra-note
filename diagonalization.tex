@@ -1,13 +1,13 @@
-\section{Diagonalization}
+\chapter{Diagonalization}
 
-\subsection{Why it is useful}
+\section{Why it is useful}
 
 
 The reason we do research on diagonalization is to simplify calculation. If a square matrix is diagonalizable, the result is a diagonal matrix, which is each to multiply.
 
 Diagonalization process will find eigenvectors. These special vectors have a special property that after the result of linear transformation are still themselves with different length. Because these eigenvectors are the basis of vector space, we could try to understand the behavior of the linear transformation through these eigenvectors.
 
-\subsection{Definition}
+\section{Definition}
 
 
 A linear operator $T$ is diagonalizable if there is a basis $\beta$ of $V$ that $\coordinate{T}_\beta$ is a diagonal matrix. A square matrix $A$ is diagonalizable if $L_A$ is diagonalizable.
@@ -18,7 +18,7 @@ If a square matrix is diagonalizable, it is similar to a diagonal matrix. So $D 
 
 
 
-\subsection{Calculation}
+\section{Calculation}
 
 It is easier to calculate eigenvalue using matrix representation. If (and only if) $\lambda$ is an eigenvalue of $A$, then $\determinate{A - \lambda I_n} = 0$. The function $f(t) = \determinate{A - t I_n}$ is called the characteristic polynomial of $A$. So our job is to find all zeros of $f(t)$.
 
@@ -176,7 +176,7 @@ The test for diagonalizability now requires $\dimension{E_\lambda} = m$ for each
 
 
 % invariant subspace
-\subsection{Invariant Subspace}
+\section{Invariant Subspace}
 
 Invariant subspace is very useful because it could split the big matrix representation into smaller ones. And it always exists.
 
