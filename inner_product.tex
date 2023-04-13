@@ -524,7 +524,7 @@ The end result is that a quadratic form could be simplified by a rotation.
 \begin{example}
     If $A$ is an self-adjoint matrix, there is an orthogonal matrix $P$ that $\transpose{P} A P = \Sigma$. So $A = P \Sigma \transpose{P}$. Therefore the effect of $A \times B$ is to
     \begin{enumerate}
-        \item Rotate $B$ by $\inverse{T}$
+        \item Rotate $B$ by $\inverse{P}$
         \item Scale $B$ by $\Sigma$
         \item Rotate $B$ back by $P$
     \end{enumerate}
@@ -677,7 +677,9 @@ There are many properties of positive definite:
 \begin{theorem}\label{tt_positive_semidefinite}
     Let $T:V \rightarrow W$ be a linear transformation, The Gram matrix $TT^*$ and $T^*T$ are positive semidefinite.
 \end{theorem}
-
+\begin{proof}
+    Use SVD. Let $T = U \Sigma V^*$, we have $TT^* = U \Sigma V^* V \Sigma^* U^* =  U \Sigma \Sigma^* U^* = \Sigma U U^* \Sigma^* = \Sigma^2$.
+\end{proof}
 
 
 
@@ -778,10 +780,10 @@ Steps of calculating the SVD for $T:V \rightarrow W$:
 \begin{enumerate}
     \item Find orthonormal basis $\alpha$ of $V$ and $\beta$ of $W$
     \item Find $A = \coordinate{T}_\alpha^\beta$
-    \item Find the eigenvalue $\lambda_i$ of $A^*A$, and its corresponding eigenvectors in $F^m$
+    \item Find the eigenvalue $\lambda_i$ of $A^*A$, and its corresponding eigenvectors in $F^m$. Find $V$
+    \item Calculate the $\sigma_i = \sqrt{\lambda_i}$. Find $\Sigma$
     \item Convert from eigenvectors in $F^m$ representation into vectors $v_i$ in $V$
-    \item Calculate the $\sigma_i = \sqrt{\lambda_i}$
-    \item Calculate $\displaystyle w_i = \frac{1}{\sigma_i} T(v_i)$ for $i \leq r$
+    \item Calculate $\displaystyle w_i = \frac{1}{\sigma_i} T(v_i)$ for $i \leq r$. Find $W$
 \end{enumerate}
 
 \begin{theorem}
@@ -863,7 +865,13 @@ For a system of linear equations $Ax=b$, we would like to know what is the relat
 
 \subsection{Matrix Decomposition}
 
-
+The list of famous decomposition:
+\begin{itemize}
+    \item Polar: unitary + positive semidefinite
+    \item QR: orthogonal + upper triangular (need rank $n$)
+    \item LU: lower triangular + upper triangular
+    \item Cholesky: lower triangular (need self-adjoint + positive semidefinite)
+\end{itemize}
 
 \begin{theorem}[Polar Decomposition]
     A square matrix $A$ could be expressed as 
@@ -879,19 +887,6 @@ For a system of linear equations $Ax=b$, we would like to know what is the relat
     $A = U\Sigma V^* = U V^* V \Sigma V^* = (U V^*) \cdot (V \Sigma V^*)$. Let $W = U V^*$ and $P = V \Sigma V^*$.
 \end{proof}
 
-
-\begin{theorem}[LU Decomposition]
-    For square matrix $A$, it could be composed into two factors: a lower triangular matrix $L$ and an upper triangular matrix $U$ that
-    \begin{equation}
-        A = LU
-    \end{equation}
-    
-    Here $L$ stands for lower, and $U$ stands for upper.
-    
-    We could find $L$ and $U$ using the Gaussian elimination.
-    
-    Sometimes we need to permutate the rows of $A$ so the leading value is nonzero. So we need to multiply a permutation matrix $P$ to $A$ to have $PA = LU$. This is called partial pivoting. If we permutate the columns as well, it is called full pivoting $PAQ = LU$.
-\end{theorem}
 
 \begin{theorem}[QR Decomposition]
     For square matrix $A$ with rank $n$, it could be composed into two factors: an orthogonal matrix $Q$ and an upper triangular matrix $R$ that 
@@ -911,6 +906,20 @@ For a system of linear equations $Ax=b$, we would like to know what is the relat
     \end{equation*}
     So $Q=[e_1, e_2, ..., e_n]$, and $R_{ij} = \innerproduct{e_j}{a_j}$.
 \end{proof}
+
+
+\begin{theorem}[LU Decomposition]
+    For square matrix $A$, it could be composed into two factors: a lower triangular matrix $L$ and an upper triangular matrix $U$ that
+    \begin{equation}
+        A = LU
+    \end{equation}
+    
+    Here $L$ stands for lower, and $U$ stands for upper.
+    
+    We could find $L$ and $U$ using the Gaussian elimination.
+    
+    Sometimes we need to permutate the rows of $A$ so the leading value is nonzero. So we need to multiply a permutation matrix $P$ to $A$ to have $PA = LU$. This is called partial pivoting. If we permutate the columns as well, it is called full pivoting $PAQ = LU$.
+\end{theorem}
 
 \begin{theorem}[Cholesky Decomposition]
     For a self-adjoint positive semidefinite matrix $A$, it could be decomposed into 

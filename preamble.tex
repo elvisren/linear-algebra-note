@@ -40,7 +40,6 @@
 \usepackage{listings}
 
 
-
 % no space in itemize
 \usepackage{enumitem}
 \setenumerate{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=2pt}
@@ -77,6 +76,17 @@
 \usepackage{newtxtext}
 \usepackage[T1]{fontenc}
 \usepackage[subscriptcorrection,slantedGreek,nofontinfo,mtpcal,mtpfrak,mtphrb,zswash]{mtpro2}
+
+
+
+\usepackage{adjustbox}
+
+
+%
+%
+% define new commands
+%
+%
 
 
 \newcommand\mathhilight[1]{\mathop{\bf #1\/}}
@@ -120,6 +130,7 @@
 
 \newcommand\projection[2]{\mathrm{proj}_{#2} #1}
 \newcommand\rowvector[1]{\left[ \displaystyle #1 \right]}
+\newcommand\vectorsymbol[1]{\overrightarrow{#1}}
 
 % projection, the x^-1
 \newcommand\inverse[1]{ {#1}^{-1} }
