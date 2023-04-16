@@ -67,9 +67,19 @@ There are several famous equations:
     The proof relies on $\norm{x} \geq 0$.
 \end{proof}
 
+
+
+
 \begin{theorem}
     If $x \perp y$, we have $\norm{x+y}^2 = \norm{x}^2 + \norm{y}^2$    
 \end{theorem}
+
+\begin{theorem}
+    \begin{equation}
+        \norm{x + y}^2 + \norm{x-y}^2 = 2 \left(\norm{x}^2 + \norm{y}^2\right)
+    \end{equation}    
+\end{theorem}
+
 
 \begin{definition}
     For a inner product space $V$:
@@ -123,11 +133,21 @@ Here $S$ does not have to be a vector space. It could be any set and $(S^\perp)^
     \end{equation}
 \end{theorem}
 
+
+\begin{example}
+    We want to find which $g \in U$ could minimize the expression
+    \begin{equation}
+        \argmin{g} \frac{1}{2\pi}\int_{0}^{2\pi} \absolutevalue{f(x) - g(x)}^2 \dif x
+    \end{equation}
+    
+     This is an expression of $\norm{f - g}^2$, so we would like to find a $g$ that $g \perp f$. We could project $f$ on $U$, which is to project $f$ on basis of $U$ and add up the projections.
+\end{example}
+
 Once we have orthonormal basis $\beta = \set{v_1, v_2, ..., v_n}$,  we could directly represent vectors and linear operators using orthonormal basis:
 \begin{itemize}
     \item $\displaystyle x = \sum_{i=1}^n \innerproduct{x}{v_i} v_i$
     \item $\left(\coordinate{T}_\beta\right)_{ij} = \innerproduct{T(v_j)}{v_i}$ (extremely useful. The order of $i$ and $j$ are swapped)
-    \item For $g: V \rightarrow F$, $g(x) = \innerproduct{x}{\sum_{i=1}^n \conjugate{g(v_i)} v_i}$
+    \item For $g: V \rightarrow F$, $g(x) = \innerproduct{x}{\sum_{i=1}^n \conjugate{g(v_i)} v_i}$ (Riesz representation theorem)
 \end{itemize}
 
 
@@ -265,7 +285,7 @@ A common mistake is to think that $T$ is normal if and only if $\coordinate{T}_\
 Now we come the most important theorem of this section.
 
 \begin{theorem}\label{normal_orthonormal_with_complex_space}
-    For finite-dimension inner product space $V$ on $F=C$, $T$ is normal if and only if there exists orthonormal basis that are eigenvectors of $T$.
+    For finite-dimension inner product space $V$ on $F=\complexset$, $T$ is normal if and only if there exists orthonormal basis that are eigenvectors of $T$.
 \end{theorem}
 \begin{proof}
     If such basis exists, the coordinates of $T$ and $T^*$ are diagonal matrix, so they commute. We do not need the complex feature here. The difficult is on the other side of proof and we need the complex property.
@@ -279,7 +299,7 @@ Now we come the most important theorem of this section.
         A_{jk} = \innerproduct{T(v_k)}{v_j} = \innerproduct{v_k}{T^*(v_j)} = \innerproduct{v_k}{\conjugate{\lambda_j} v_j} = \lambda \innerproduct{v_k}{v_j} = 0
     \end{equation*}
     
-    Normality is use here. Although $T^*$ always have eigenvalue if $T$ has eigenvalue, the eigenvalue $v_j$ of $T$ may not be the eigenvalue of $T^*$.
+    Because $T$ is normal, $\transpose{\lambda}$ is an eigenvalue of $T^*$. Although $T^*$ always have eigenvalue if $T$ has eigenvalue, the eigenvalue $v_j$ of $T$ may not be the eigenvalue of $T^*$.
     
     So the result is a diagonal matrix and $\beta$ are all eigenvectors.
 \end{proof}
@@ -294,7 +314,7 @@ Being both orthonormal and eigenvector means there is a diagonal of eigenvalues 
 
 \section{Self-adjoint Operators}
 
-\theoref{normal_orthonormal_with_complex_space} did not work for $F=R$ because polynomials do not always split. So we need stronger restriction to make it split in $\realset$, which is self-adjoint.
+\theoref{normal_orthonormal_with_complex_space} did not work for $F=\realset$ because polynomials do not always split. So we need stronger restriction to make it split in $\realset$, which is self-adjoint.
 
 \begin{definition}[Hermitian, self-adjoint]
     $T$ is Hermitian (self-adjoint) if $T = T^*$. So is it for $A$.
@@ -303,7 +323,7 @@ Being both orthonormal and eigenvector means there is a diagonal of eigenvalues 
 If $T$ is self-adjoint, it has even better properties:
 \begin{enumerate}
     \item Every eigenvalue of $T$ is real, regardless of $F$ is $\complexset$ or $\realset$
-    \item If $V$ is on $F=R$, $T$ still splits
+    \item If $V$ is on $F=\realset$, $T$ still splits
 \end{enumerate}
 \begin{proof}
     \begin{equation*}
@@ -311,11 +331,11 @@ If $T$ is self-adjoint, it has even better properties:
     \end{equation*}
     So $\lambda = \conjugate{\lambda}$ and $\lambda$ is real.
     
-    For second property, take $F=C$ and let $T$ splits in $\complexset$. But all eigenvalues are real, so $T$ splits in $\realset$.
+    For second property, take $F=\complexset$ and let $T$ splits in $\complexset$. But all eigenvalues are real, so $T$ splits in $\realset$.
 \end{proof}
 
 \begin{theorem}
-    For finite-dimension inner product space $V$ on $F=R$, $T$ is self-adjoint if and only if there exists orthonormal basis that are eigenvectors of $T$.
+    For finite-dimension inner product space $V$ on $F=\realset$, $T$ is self-adjoint if and only if there exists orthonormal basis that are eigenvectors of $T$.
 \end{theorem}
 \begin{proof}
     If $T$ is self-adjoint, it splits. So we apply \theoref{schur_theorem} to find orthonormal basis $\beta$ that $A = \coordinate{T}_\beta$ is upper triangular. But
@@ -426,7 +446,7 @@ The relationship among normal, unitary, unitarily equivalent are complex:
 \begin{enumerate}
     \item If $A$ is normal, there is diagonal $D$ that $D = \inverse{Q} A Q$. $Q$ here is unitary
     \item If $A$ is normal and unitary, (unitary means normal), there is still such $D$ and $Q$, with $\absolutevalue{\lambda_i} = 1$
-    \item If $D = Q^* A Q$ and $Q$ is unitary, $A$ and $D$ are unitarily equivalent9
+    \item If $D = Q^* A Q$ and $Q$ is unitary, $A$ and $D$ are unitarily equivalent
 \end{enumerate}
 
 So the unitary is sometimes on $A$ and sometimes on $Q$.
@@ -627,11 +647,11 @@ The result above could be expanded further:
 
 Some conclusions are:
 \begin{theorem}
-    Let $F = C$. We have:
+    Let $F = \complexset$. We have:
     \begin{enumerate}
         \item $T$ is normal if and only if $T^* = g(T)$ for some polynomial $g$
         \item $T$ is unitary if and only if $T$ is normal and $\absolutevalue{\lambda_i} = 1$
-        \item $T$ is self-adjoint if and only if $T$ is normal and $\lambda \in R$
+        \item $T$ is self-adjoint if and only if $T$ is normal and $\lambda \in \realset$
     \end{enumerate}    
 \end{theorem}
 \begin{proof}
@@ -666,18 +686,51 @@ Some conclusions are:
     It is called positive semidefinite if $\innerproduct{T(x)}{x} \geq 0$.
 \end{definition}
 
-
-There are many properties of positive definite:
-\begin{enumerate}
-    \item $T$ is positive definite (semidefinite) if and only if all eigenvalues are positive (nonnegative)
-    \item $T$ is positive definite (semidefinite) if and only if $A$ is positive definite (semidefinite). Here $A = \coordinate{T}_\beta $ where $\beta$ is an orthonormal basis for $V$
-    \item $T$ is positive semidefinite if and only if $T = B^*B$ for some $B$
-\end{enumerate}
+\begin{theorem}
+    $T$ is positive definite (semidefinite) if and only if all eigenvalues are positive (nonnegative)
+\end{theorem}
 \begin{proof}
-    Since $T$ is self-adjoin, there is orthonormal matrix $P$ that $\transpose{P} T P = \Sigma$. So
+    For eigenvector $v_i$ with eigenvalue $\lambda_i$, we have 
     \begin{equation*}
-        \transpose{x} T x = \transpose{x} P \Sigma \transpose{P} x = \transpose{y} \Sigma y = \sum_i \lambda_i y_i^2
+        \innerproduct{Tv_i}{v_i} = \innerproduct{\lambda_i v_i}{v_i} = \lambda_i \norm{v_i} \geq 0
     \end{equation*}
+\end{proof}
+
+\begin{theorem}
+$T$ is positive definite (semidefinite) if and only if $A$ is positive definite (semidefinite). Here $A = \coordinate{T}_\beta $ where $\beta$ is an orthonormal basis for $V$    
+\end{theorem}
+
+\begin{theorem}[Positive Semidefinite Square Root]
+    $T$ is positive semidefinite if there is a unique $B$ which is positive semidefinite that $B^2 = T$.
+\end{theorem}
+\begin{proof}
+    Since $T$ is self-adjoint, we have orthonormal eigenvectors $\set{v_i}$ of $T$. If $T$ is positive semidefinite, all eigenvalues are non-negative, so we define a function $B$ as
+    \begin{equation*}
+        B(v_j) = \sqrt{\lambda_j} v_j
+    \end{equation*}
+    
+    We have $BB(v_j) = B\left(\sqrt{\lambda_j} v_j\right) = \lambda_j v_j = T(v_j)$. So $B^2= T$ and $B$ is positive semidefinite.
+    
+    If we have a such $B$, $B=B^*$ and we have
+    \begin{equation*}
+        \innerproduct{Tx}{x} = \innerproduct{BB(x)}{x} = \innerproduct{B(x)}{B^*(x)} = \innerproduct{B(x)}{B(x)} \geq 0
+    \end{equation*}
+    
+\end{proof}
+
+\begin{definition}[$\sqrt{T}$]
+   A positive semidefinite $T$ could have many square root, but it only have one positive semidefinite square root. This square root is called $\sqrt{T}$. $\sqrt{T}$ has a property that
+   \begin{equation}
+       \left(\sqrt{T}\right)^* = \sqrt{T}
+   \end{equation}   
+\end{definition}
+
+
+\begin{theorem}
+    $T$ is positive semidefinite if and only if $T = B^*B$ for some $B$.    
+\end{theorem}
+\begin{proof}
+    If $T$ is positive semidefinite, there is $B$ that $B = B^*$ and $T = BB = BB^*$.
 \end{proof}
 
 
@@ -685,7 +738,7 @@ There are many properties of positive definite:
     Let $T:V \rightarrow W$ be a linear transformation, The Gram matrix $TT^*$ and $T^*T$ are positive semidefinite.
 \end{theorem}
 \begin{proof}
-    Use SVD. Let $T = U \Sigma V^*$, we have $TT^* = U \Sigma V^* V \Sigma^* U^* =  U \Sigma \Sigma^* U^* = \Sigma U U^* \Sigma^* = \Sigma^2$.
+    $\innerproduct{TT^*(x)}{x} = \innerproduct{T^*(x)}{T^*(x)} \geq 0$.
 \end{proof}
 
 
@@ -725,9 +778,7 @@ The adjoint of linear transformation has similar property:
                 \end{itemize}
         \item $\sigma_i = \sqrt{\lambda_i}$
         \item Orthonormal basis $\set{w_i}$ for $W$ that $\displaystyle w_i = \frac{1}{\sigma_i} T(v_i)$ for $i \leq r$
-    \end{enumerate}
-    
-    That 
+    \end{enumerate} that 
     \begin{equation}
         T(v_i) = \begin{cases}
         \begin{aligned}
@@ -882,14 +933,14 @@ Name & Result & Requirement \\ \hline
 Polar & unitary + positive semidefinite & \\ \hline
 QR & orthogonal + upper triangular & rank $n$ \\ \hline
 LU & lower triangular + upper triangular & \\ \hline
-Cholesky & lower triangular & self-adjoint + positive semidefinite \\ \hline
+Cholesky & lower triangular & positive semidefinite \\ \hline
 \end{tabular}
 \end{table}
 
 \begin{theorem}[Polar Decomposition]
     A square matrix $A$ could be expressed as 
     \begin{equation}
-        A = WP
+        A = WP = W \sqrt{A^*A}
     \end{equation}
     
     Where $W$ is unitary and $P$ is positive semidefinite. If $A$ is invertible, the representation is unique. 
@@ -935,7 +986,7 @@ Cholesky & lower triangular & self-adjoint + positive semidefinite \\ \hline
 \end{theorem}
 
 \begin{theorem}[Cholesky Decomposition]
-    For a self-adjoint positive semidefinite matrix $A$, it could be decomposed into 
+    For a positive semidefinite matrix $A$, it could be decomposed into 
     \begin{equation}
         A = L L^*
     \end{equation}

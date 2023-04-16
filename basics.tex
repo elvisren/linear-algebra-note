@@ -26,6 +26,8 @@ After the vector space is defined, we now check the relation among vectors. The 
 If we set restriction on linear combination, we have linearly dependent relation among $\set{u_i}$ that $\sum_{i=1}^{n} a_i u_i = 0$ and not all $a_i$ are $0$. Linearly independent means all $a_i = 0$. A linearly independent generating set is called basis.
 
 
+A vector space is finite dimensional if it has a finite span set.
+
 
 Now comes the most important theorem:
 \begin{theorem}[Replacement Theorem]\label{replacement_theorem}
@@ -36,12 +38,22 @@ Now comes the most important theorem:
 Theorem~\ref{replacement_theorem} means every basis has the same number of vectors, which is the dimension of a vector space. One corollary is if a subspace has the same dimension as the vector space, they are the same.
 
 
-Famous Lagrange polynomial for $g \in \mathcal{P}_n (F)$: if $g(c_i) = b_i$, then define $f_i$ as:
+\begin{example}
+   Famous Lagrange polynomial for $g \in \mathcal{P}_n (F)$: if $g(c_i) = b_i$, then define $f_i$ as:
 \begin{equation}
     f_i(x) = \prod_{k=0,k \neq i}^{n} \frac{x - c_k}{c_i - c_k}
 \end{equation}
 
-Then $g = \sum_{i=0}^{n} b_i \times f_i $. (note: we have $n+1$ $f_i$, so the dimension is $n+1$).
+Then $g = \sum_{i=0}^{n} b_i \times f_i $. (note: we have $n+1$ $f_i$, so the dimension is $n+1$). 
+\end{example}
+
+\begin{theorem}
+    \begin{equation}
+        \dimension{A\cup B} = \dimension{A} + \dimension{B} - \dimension{A \cap B}
+    \end{equation}    
+\end{theorem}
+
+
 
 \begin{theorem}
     every vector space has a basis.

@@ -26,6 +26,12 @@ It is easier to calculate eigenvalue using matrix representation. If (and only i
 \begin{theorem}
     similar matrices have the same determinant and characteristic function. It also means that a linear operator $T$ under two different basis will generate the same characteristic functions.
 \end{theorem}
+\begin{proof}
+    Let $B = \inverse{P}AP$, we have 
+    \begin{equation}
+        \absolutevalue{B - \lambda I} = \absolutevalue{\inverse{P} A P - \lambda \inverse{P} I P} = \absolutevalue{\inverse{P} (A - \lambda I) P} = \absolutevalue{A - \lambda I}
+    \end{equation}
+\end{proof}
 
 
 \begin{theorem}\label{eigenvector_sets_are_linearly_independent}
